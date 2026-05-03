@@ -1,0 +1,793 @@
+Class,Subject,Total_Hours,Course_Hours,TD_Hours,TP_Hours
+BIO2/1,Immunologie,3.0,3.0,0.0,0.0
+BIO2/1,Analyses Biochimiques,3.0,1.5,0.0,1.5
+BIO2/1,Genie Alimentaire,4.5,3.0,1.5,0.0
+BIO2/1,Physiologie végétale,4.5,3.0,1.5,0.0
+BIO2/1,Microbiologie indust,6.0,3.0,1.5,1.5
+BIO2/1,Anglais,1.5,0.0,1.5,0.0
+BIO2/1,Biologie végétale,1.5,1.5,0.0,0.0
+BIO2/1,Gestion,1.5,1.5,0.0,0.0
+BIO2/1,Droit,1.5,1.5,0.0,0.0
+BIO2/1,Biochim Alimentaire,4.5,3.0,1.5,0.0
+BIO2/1,Froid Alimentaire,4.5,3.0,1.5,0.0
+BIO2/2,Immunologie,3.0,3.0,0.0,0.0
+BIO2/2,Analyses Biochimiques,3.0,1.5,0.0,1.5
+BIO2/2,Genie Alimentaire,4.5,3.0,1.5,0.0
+BIO2/2,Physiologie végétale,4.5,3.0,1.5,0.0
+BIO2/2,Microbiologie indust,6.0,3.0,1.5,1.5
+BIO2/2,Anglais,1.5,0.0,1.5,0.0
+BIO2/2,Biologie végétale,1.5,1.5,0.0,0.0
+BIO2/2,Gestion,1.5,1.5,0.0,0.0
+BIO2/2,Droit,1.5,1.5,0.0,0.0
+BIO2/2,Biochim Alimentaire,4.5,3.0,1.5,0.0
+BIO2/2,Froid Alimentaire,4.5,3.0,1.5,0.0
+BIO3/1,Biostatistique,3.0,1.5,1.5,0.0
+BIO3/1,Genie genetique,3.0,1.5,0.0,1.5
+BIO3/1,Immunologie Techno,3.0,1.5,0.0,1.5
+BIO3/1,Technolog.Microbien,3.0,1.5,0.0,1.5
+BIO3/1,Pharmacologie,3.0,1.5,1.5,0.0
+BIO3/1,Genie Biocatalyse,3.0,1.5,0.0,1.5
+BIO3/1,Arabe,1.5,0.0,1.5,0.0
+BIO3/1,Français,1.5,1.5,0.0,0.0
+BIO3/1,Anglais,1.5,0.0,1.5,0.0
+BIO3/1,Resist.materiaux,1.5,1.5,0.0,0.0
+BIO3/1,Biotechnologie environnementale,3.0,1.5,1.5,0.0
+BIO3/1,Biotechnologies moléculaires,3.0,1.5,0.0,1.5
+BIO3/1,Marketing,1.5,1.5,0.0,0.0
+BIO3/1,Biosécurité et Bioéthique,1.5,1.5,0.0,0.0
+BIO3/2,Biostatistique,3.0,1.5,1.5,0.0
+BIO3/2,Genie genetique,3.0,1.5,0.0,1.5
+BIO3/2,Immunologie Techno,3.0,1.5,0.0,1.5
+BIO3/2,Technolog.Microbien,3.0,1.5,0.0,1.5
+BIO3/2,Pharmacologie,3.0,1.5,1.5,0.0
+BIO3/2,Genie Biocatalyse,3.0,1.5,0.0,1.5
+BIO3/2,Arabe,1.5,0.0,1.5,0.0
+BIO3/2,Français,1.5,1.5,0.0,0.0
+BIO3/2,Anglais,1.5,0.0,1.5,0.0
+BIO3/2,Resist.materiaux,1.5,1.5,0.0,0.0
+BIO3/2,Biotechnologie environnementale,3.0,1.5,1.5,0.0
+BIO3/2,Biotechnologies moléculaires,3.0,1.5,0.0,1.5
+BIO3/2,Marketing,1.5,1.5,0.0,0.0
+BIO3/2,Biosécurité et Bioéthique,1.5,1.5,0.0,0.0
+BIO4/1,Bioinformatique,3.0,1.5,0.0,1.5
+BIO4/1,Management projet,1.5,1.5,0.0,0.0
+BIO4/1,Optimisation,1.5,1.5,0.0,0.0
+BIO4/1,Systemes disperses,1.5,1.5,0.0,0.0
+BIO4/1,Anglais,1.5,0.0,1.5,0.0
+BIO4/1,Valorisat.bio,3.0,1.5,0.0,1.5
+BIO4/1,Methodolog.concep,3.0,1.5,0.0,1.5
+BIO4/1,Manag.innovat,3.0,1.5,0.0,1.5
+BIO4/1,Procedes enzmatiq,3.0,1.5,0.0,1.5
+BIO4/1,G.R.H,1.5,1.5,0.0,0.0
+BIO4/1,Techno.alimentaires,4.5,3.0,0.0,1.5
+BIO4/1,Génie Séparation,3.0,1.5,0.0,1.5
+BIO4/1,Conservation biodiversité,3.0,1.5,0.0,1.5
+BIO4/1,Referentiels QHSE,1.5,0.0,0.0,1.5
+BIO4/2,Bioinformatique,3.0,1.5,0.0,1.5
+BIO4/2,Management projet,1.5,1.5,0.0,0.0
+BIO4/2,Optimisation,1.5,1.5,0.0,0.0
+BIO4/2,Systemes disperses,1.5,1.5,0.0,0.0
+BIO4/2,Anglais,1.5,0.0,1.5,0.0
+BIO4/2,Valorisat.bio,3.0,1.5,0.0,1.5
+BIO4/2,Methodolog.concep,3.0,1.5,0.0,1.5
+BIO4/2,Manag.innovat,3.0,1.5,0.0,1.5
+BIO4/2,Procedes enzmatiq,3.0,1.5,0.0,1.5
+BIO4/2,G.R.H,1.5,1.5,0.0,0.0
+BIO4/2,Techno.alimentaires,4.5,3.0,0.0,1.5
+BIO4/2,Génie Séparation,3.0,1.5,0.0,1.5
+BIO4/2,Conservation biodiversité,3.0,1.5,0.0,1.5
+BIO4/2,Referentiels QHSE,1.5,0.0,0.0,1.5
+GL2/1,Architecture des réseaux,3.0,1.5,0.0,1.5
+GL2/1,Analyse2,3.0,1.5,1.5,0.0
+GL2/1,Conception des systémes,4.5,3.0,1.5,0.0
+GL2/1,Algébre2,4.5,3.0,1.5,0.0
+GL2/1,Systemes de gestion de bases de donnees,1.5,1.5,0.0,0.0
+GL2/1,Comptabilité,1.5,1.5,0.0,0.0
+GL2/1,Droit,1.5,1.5,0.0,0.0
+GL2/1,Applications reparties,3.0,1.5,0.0,1.5
+GL2/1,Anglais,1.5,0.0,1.5,0.0
+GL2/1,Atelier Java,1.5,0.0,0.0,1.5
+GL2/1,Concep.Systé. Inform,1.5,0.0,0.0,1.5
+GL2/1,Unix,1.5,0.0,0.0,1.5
+GL2/1,Technologie de web,1.5,0.0,0.0,1.5
+GL2/2,Architecture des réseaux,3.0,1.5,0.0,1.5
+GL2/2,Analyse2,3.0,1.5,1.5,0.0
+GL2/2,Conception des systémes,4.5,3.0,1.5,0.0
+GL2/2,Algébre2,4.5,3.0,1.5,0.0
+GL2/2,Systemes de gestion de bases de donnees,1.5,1.5,0.0,0.0
+GL2/2,Comptabilité,1.5,1.5,0.0,0.0
+GL2/2,Droit,1.5,1.5,0.0,0.0
+GL2/2,Applications reparties,3.0,1.5,0.0,1.5
+GL2/2,Anglais,1.5,0.0,1.5,0.0
+GL2/2,Atelier Java,1.5,0.0,0.0,1.5
+GL2/2,Concep.Systé. Inform,1.5,0.0,0.0,1.5
+GL2/2,Unix,1.5,0.0,0.0,1.5
+GL2/2,Technologie de web,1.5,0.0,0.0,1.5
+GL2/3,Architecture des réseaux,3.0,1.5,0.0,1.5
+GL2/3,Analyse2,3.0,1.5,1.5,0.0
+GL2/3,Conception des systémes,4.5,3.0,1.5,0.0
+GL2/3,Algébre2,4.5,3.0,1.5,0.0
+GL2/3,Systemes de gestion de bases de donnees,1.5,1.5,0.0,0.0
+GL2/3,Comptabilité,1.5,1.5,0.0,0.0
+GL2/3,Droit,1.5,1.5,0.0,0.0
+GL2/3,Applications reparties,3.0,1.5,0.0,1.5
+GL2/3,Anglais,1.5,0.0,1.5,0.0
+GL2/3,Atelier Java,1.5,0.0,0.0,1.5
+GL2/3,Concep.Systé. Inform,1.5,0.0,0.0,1.5
+GL2/3,Unix,1.5,0.0,0.0,1.5
+GL2/3,Technologie de web,1.5,0.0,0.0,1.5
+GL3/1,Algorithmique,1.5,1.5,0.0,0.0
+GL3/1,Prog. Logique,3.0,1.5,0.0,1.5
+GL3/1,Marketing,1.5,1.5,0.0,0.0
+GL3/1,Français,1.5,1.5,0.0,0.0
+GL3/1,Protoc.commu.Web,3.0,1.5,0.0,1.5
+GL3/1,Analyse Numérique,1.5,1.5,0.0,0.0
+GL3/1,Bases de donnees rel,3.0,1.5,1.5,0.0
+GL3/1,Fondements systèmes,3.0,1.5,0.0,1.5
+GL3/1,Anglais,1.5,0.0,1.5,0.0
+GL3/1,Method.Concep,1.5,0.0,0.0,1.5
+GL3/1,Optimisation,1.5,1.5,0.0,0.0
+GL3/1,Base Donn. NON Relat,1.5,0.0,1.5,0.0
+GL3/1,CO-desgin,3.0,1.5,0.0,1.5
+GL3/1,Methodologies de conception,1.5,1.5,0.0,0.0
+GL3/1,Analyse des données,3.0,1.5,0.0,1.5
+GL3/1,Complexité des algoritmes,1.5,1.5,0.0,0.0
+GL3/1,Projet personnel professionel,1.5,0.0,0.0,1.5
+GL3/2,Algorithmique,1.5,1.5,0.0,0.0
+GL3/2,Prog. Logique,3.0,1.5,0.0,1.5
+GL3/2,Marketing,1.5,1.5,0.0,0.0
+GL3/2,Français,1.5,1.5,0.0,0.0
+GL3/2,Protoc.commu.Web,3.0,1.5,0.0,1.5
+GL3/2,Analyse Numérique,1.5,1.5,0.0,0.0
+GL3/2,Bases de donnees rel,3.0,1.5,1.5,0.0
+GL3/2,Fondements systèmes,3.0,1.5,0.0,1.5
+GL3/2,Anglais,1.5,0.0,1.5,0.0
+GL3/2,Method.Concep,1.5,0.0,0.0,1.5
+GL3/2,Optimisation,1.5,1.5,0.0,0.0
+GL3/2,Base Donn. NON Relat,1.5,0.0,1.5,0.0
+GL3/2,CO-desgin,3.0,1.5,0.0,1.5
+GL3/2,Methodologies de conception,1.5,1.5,0.0,0.0
+GL3/2,Analyse des données,3.0,1.5,0.0,1.5
+GL3/2,Complexité des algoritmes,1.5,1.5,0.0,0.0
+GL3/2,Projet personnel professionel,1.5,0.0,0.0,1.5
+CH2/1,Physico-chimie,4.5,1.5,0.0,3.0
+CH2/1,Mécanique des fluides,4.5,1.5,1.5,1.5
+CH2/1,Produits Naturels,4.5,1.5,1.5,1.5
+CH2/1,Equilibres electro,4.5,1.5,1.5,1.5
+CH2/1,Cinetique electrochimique,3.0,1.5,1.5,0.0
+CH2/1,Anglais,1.5,0.0,1.5,0.0
+CH2/1,Droit,1.5,1.5,0.0,0.0
+CH2/1,Thermodynamique appliquées,3.0,1.5,1.5,0.0
+CH2/1,Comptabilité,1.5,1.5,0.0,0.0
+CH2/2,Physico-chimie,4.5,1.5,0.0,3.0
+CH2/2,Mécanique des fluides,4.5,1.5,1.5,1.5
+CH2/2,Produits Naturels,4.5,1.5,1.5,1.5
+CH2/2,Equilibres electro,4.5,1.5,1.5,1.5
+CH2/2,Cinetique electrochimique,3.0,1.5,1.5,0.0
+CH2/2,Anglais,1.5,0.0,1.5,0.0
+CH2/2,Droit,1.5,1.5,0.0,0.0
+CH2/2,Thermodynamique appliquées,3.0,1.5,1.5,0.0
+CH2/2,Comptabilité,1.5,1.5,0.0,0.0
+CH3/1,Français,1.5,1.5,0.0,0.0
+CH3/1,Stratégie synthèse,3.0,1.5,0.0,1.5
+CH3/1,Gestion Traitement déchets,3.0,1.5,0.0,1.5
+CH3/1,Electrochimie,3.0,1.5,0.0,1.5
+CH3/1,Méthodes séparation,4.5,1.5,1.5,1.5
+CH3/1,Méthodes numériques,3.0,1.5,0.0,1.5
+CH3/1,Etats de la matière,3.0,1.5,0.0,1.5
+CH3/1,Marketing,1.5,1.5,0.0,0.0
+CH3/1,Arabe,1.5,0.0,1.5,0.0
+CH3/1,Anglais,1.5,0.0,1.5,0.0
+CH3/1,Optimisation,3.0,3.0,0.0,0.0
+CH3/1,Traitement des eaux,3.0,1.5,0.0,1.5
+CH3/1,Automa.Régu.Cap,3.0,1.5,0.0,1.5
+CH3/2,Français,1.5,1.5,0.0,0.0
+CH3/2,Stratégie synthèse,3.0,1.5,0.0,1.5
+CH3/2,Gestion Traitement déchets,3.0,1.5,0.0,1.5
+CH3/2,Electrochimie,3.0,1.5,0.0,1.5
+CH3/2,Méthodes séparation,4.5,1.5,1.5,1.5
+CH3/2,Méthodes numériques,3.0,1.5,0.0,1.5
+CH3/2,Etats de la matière,3.0,1.5,0.0,1.5
+CH3/2,Marketing,1.5,1.5,0.0,0.0
+CH3/2,Arabe,1.5,0.0,1.5,0.0
+CH3/2,Anglais,1.5,0.0,1.5,0.0
+CH3/2,Optimisation,3.0,3.0,0.0,0.0
+CH3/2,Traitement des eaux,3.0,1.5,0.0,1.5
+CH3/2,Automa.Régu.Cap,3.0,1.5,0.0,1.5
+CH4/1,"Extraction, Distillation",4.5,3.0,0.0,1.5
+CH4/1,G.R.H,1.5,1.5,0.0,0.0
+CH4/1,Tens.deterg,3.0,1.5,0.0,1.5
+CH4/1,Chimie Analytique,3.0,1.5,0.0,1.5
+CH4/1,Mang. env. Energ,1.5,1.5,0.0,0.0
+CH4/1,Chim. verte,1.5,1.5,0.0,0.0
+CH4/1,Qual.Assur,1.5,1.5,0.0,0.0
+CH4/1,Colle.mat,3.0,1.5,0.0,1.5
+CH4/1,Anglais,1.5,0.0,1.5,0.0
+CH4/1,Polyméres I,4.5,3.0,0.0,1.5
+CH4/1,Spectroscopiques,4.5,1.5,1.5,1.5
+CH4/1,NanoMat. et BioMat,1.5,1.5,0.0,0.0
+CH4/1,Management projet,1.5,1.5,0.0,0.0
+CH4/1,CAO.proc.chim,1.5,0.0,0.0,1.5
+CH4/1,Opérations Unitaires,1.5,0.0,0.0,1.5
+CH4/2,"Extraction, Distillation",4.5,3.0,0.0,1.5
+CH4/2,G.R.H,1.5,1.5,0.0,0.0
+CH4/2,Tens.deterg,3.0,1.5,0.0,1.5
+CH4/2,Chimie Analytique,3.0,1.5,0.0,1.5
+CH4/2,Mang. env. Energ,1.5,1.5,0.0,0.0
+CH4/2,Chim. verte,1.5,1.5,0.0,0.0
+CH4/2,Qual.Assur,1.5,1.5,0.0,0.0
+CH4/2,Colle.mat,3.0,1.5,0.0,1.5
+CH4/2,Anglais,1.5,0.0,1.5,0.0
+CH4/2,Polyméres I,4.5,3.0,0.0,1.5
+CH4/2,Spectroscopiques,4.5,1.5,1.5,1.5
+CH4/2,NanoMat. et BioMat,1.5,1.5,0.0,0.0
+CH4/2,Management projet,1.5,1.5,0.0,0.0
+CH4/2,CAO.proc.chim,1.5,0.0,0.0,1.5
+CH4/2,Opérations Unitaires,1.5,0.0,0.0,1.5
+IIA2/1,Electricité Indust,4.5,1.5,1.5,1.5
+IIA2/1,Traitement de signal,3.0,1.5,1.5,0.0
+IIA2/1,Réseaux,3.0,1.5,1.5,0.0
+IIA2/1,Micro-processeur,4.5,1.5,1.5,1.5
+IIA2/1,Analyse2,3.0,1.5,1.5,0.0
+IIA2/1,Algébre2,3.0,1.5,1.5,0.0
+IIA2/1,Electro.puissance,4.5,1.5,1.5,1.5
+IIA2/1,Capteurs Actionneurs,4.5,1.5,1.5,1.5
+IIA2/1,Automatique continu,4.5,1.5,1.5,1.5
+IIA2/1,Gestion,1.5,1.5,0.0,0.0
+IIA2/1,Anglais,1.5,0.0,1.5,0.0
+IIA2/1,Droit,1.5,1.5,0.0,0.0
+IIA2/2,Electricité Indust,4.5,1.5,1.5,1.5
+IIA2/2,Traitement de signal,3.0,1.5,1.5,0.0
+IIA2/2,Réseaux,3.0,1.5,1.5,0.0
+IIA2/2,Micro-processeur,4.5,1.5,1.5,1.5
+IIA2/2,Analyse2,3.0,1.5,1.5,0.0
+IIA2/2,Algébre2,3.0,1.5,1.5,0.0
+IIA2/2,Electro.puissance,4.5,1.5,1.5,1.5
+IIA2/2,Capteurs Actionneurs,4.5,1.5,1.5,1.5
+IIA2/2,Automatique continu,4.5,1.5,1.5,1.5
+IIA2/2,Gestion,1.5,1.5,0.0,0.0
+IIA2/2,Anglais,1.5,0.0,1.5,0.0
+IIA2/2,Droit,1.5,1.5,0.0,0.0
+IIA2/3,Electricité Indust,4.5,1.5,1.5,1.5
+IIA2/3,Traitement de signal,3.0,1.5,1.5,0.0
+IIA2/3,Réseaux,3.0,1.5,1.5,0.0
+IIA2/3,Micro-processeur,4.5,1.5,1.5,1.5
+IIA2/3,Analyse2,3.0,1.5,1.5,0.0
+IIA2/3,Algébre2,3.0,1.5,1.5,0.0
+IIA2/3,Electro.puissance,4.5,1.5,1.5,1.5
+IIA2/3,Capteurs Actionneurs,4.5,1.5,1.5,1.5
+IIA2/3,Automatique continu,4.5,1.5,1.5,1.5
+IIA2/3,Gestion,1.5,1.5,0.0,0.0
+IIA2/3,Anglais,1.5,0.0,1.5,0.0
+IIA2/3,Droit,1.5,1.5,0.0,0.0
+IIA3/1,Recherche Opérationnelle,3.0,1.5,0.0,1.5
+IIA3/1,Automatismes Industriels,3.0,1.5,0.0,1.5
+IIA3/1,Conception des systèmes,3.0,1.5,0.0,1.5
+IIA3/1,Programmation c/c++,1.5,0.0,0.0,1.5
+IIA3/1,Anglais,1.5,0.0,1.5,0.0
+IIA3/1,Bases de données,3.0,1.5,0.0,1.5
+IIA3/1,Marketing,1.5,1.5,0.0,0.0
+IIA3/1,Management de qualité,1.5,1.5,0.0,0.0
+IIA3/1,Technologie d'acquistion,3.0,1.5,0.0,1.5
+IIA3/1,Régulation industrielle,1.5,1.5,0.0,0.0
+IIA3/1,Français,1.5,1.5,0.0,0.0
+IIA3/1,Architecture Avancée,3.0,1.5,0.0,1.5
+IIA3/1,Modélisation identification,3.0,1.5,0.0,1.5
+IIA3/2,Recherche Opérationnelle,3.0,1.5,0.0,1.5
+IIA3/2,Automatismes Industriels,3.0,1.5,0.0,1.5
+IIA3/2,Conception des systèmes,3.0,1.5,0.0,1.5
+IIA3/2,Programmation c/c++,1.5,0.0,0.0,1.5
+IIA3/2,Anglais,1.5,0.0,1.5,0.0
+IIA3/2,Bases de données,3.0,1.5,0.0,1.5
+IIA3/2,Marketing,1.5,1.5,0.0,0.0
+IIA3/2,Management de qualité,1.5,1.5,0.0,0.0
+IIA3/2,Technologie d'acquistion,3.0,1.5,0.0,1.5
+IIA3/2,Régulation industrielle,1.5,1.5,0.0,0.0
+IIA3/2,Français,1.5,1.5,0.0,0.0
+IIA3/2,Architecture Avancée,3.0,1.5,0.0,1.5
+IIA3/2,Modélisation identification,3.0,1.5,0.0,1.5
+IIA4/1,Management projet,1.5,1.5,0.0,0.0
+IIA4/1,Commande optimale,3.0,1.5,0.0,1.5
+IIA4/1,Imagerie Embarquée,3.0,1.5,0.0,1.5
+IIA4/1,MAPE,3.0,1.5,0.0,1.5
+IIA4/1,Systèmes non.linéaires,1.5,1.5,0.0,0.0
+IIA4/1,Anglais,1.5,0.0,1.5,0.0
+IIA4/1,Conception assistée,1.5,1.5,0.0,0.0
+IIA4/1,RLI,3.0,1.5,0.0,1.5
+IIA4/1,G.R.H,1.5,1.5,0.0,0.0
+IIA4/1,Arch.prog.sys,3.0,1.5,0.0,1.5
+IIA4/1,Mach.Learning,3.0,1.5,0.0,1.5
+IIA4/1,Data Science,3.0,1.5,0.0,1.5
+IIA4/1,Inter.LIOT,3.0,1.5,0.0,1.5
+IIA4/2,Management projet,1.5,1.5,0.0,0.0
+IIA4/2,Commande optimale,3.0,1.5,0.0,1.5
+IIA4/2,Imagerie Embarquée,3.0,1.5,0.0,1.5
+IIA4/2,MAPE,3.0,1.5,0.0,1.5
+IIA4/2,Systèmes non.linéaires,1.5,1.5,0.0,0.0
+IIA4/2,Anglais,1.5,0.0,1.5,0.0
+IIA4/2,Conception assistée,1.5,1.5,0.0,0.0
+IIA4/2,RLI,3.0,1.5,0.0,1.5
+IIA4/2,G.R.H,1.5,1.5,0.0,0.0
+IIA4/2,Arch.prog.sys,3.0,1.5,0.0,1.5
+IIA4/2,Mach.Learning,3.0,1.5,0.0,1.5
+IIA4/2,Data Science,3.0,1.5,0.0,1.5
+IIA4/2,Inter.LIOT,3.0,1.5,0.0,1.5
+IMI2/1,Traitement de signal,3.0,1.5,1.5,0.0
+IMI2/1,Technologie Mécanique,4.5,1.5,1.5,1.5
+IMI2/1,Analyse,3.0,1.5,1.5,0.0
+IMI2/1,Gestion,1.5,1.5,0.0,0.0
+IMI2/1,Droit,1.5,1.5,0.0,0.0
+IMI2/1,Algébre2,3.0,1.5,1.5,0.0
+IMI2/1,Ondes Propagation,3.0,1.5,1.5,0.0
+IMI2/1,Mecaniques des solides,4.5,1.5,1.5,1.5
+IMI2/1,Electro.puissance,4.5,1.5,1.5,1.5
+IMI2/1,Capteurs,4.5,1.5,1.5,1.5
+IMI2/1,Anglais,1.5,0.0,1.5,0.0
+IMI2/1,Programmation orientée,3.0,1.5,0.0,1.5
+IMI2/2,Traitement de signal,3.0,1.5,1.5,0.0
+IMI2/2,Technologie Mécanique,4.5,1.5,1.5,1.5
+IMI2/2,Analyse,3.0,1.5,1.5,0.0
+IMI2/2,Gestion,1.5,1.5,0.0,0.0
+IMI2/2,Droit,1.5,1.5,0.0,0.0
+IMI2/2,Algébre2,3.0,1.5,1.5,0.0
+IMI2/2,Ondes Propagation,3.0,1.5,1.5,0.0
+IMI2/2,Mecaniques des solides,4.5,1.5,1.5,1.5
+IMI2/2,Electro.puissance,4.5,1.5,1.5,1.5
+IMI2/2,Capteurs,4.5,1.5,1.5,1.5
+IMI2/2,Anglais,1.5,0.0,1.5,0.0
+IMI2/2,Programmation orientée,3.0,1.5,0.0,1.5
+IMI2/3,Traitement de signal,3.0,1.5,1.5,0.0
+IMI2/3,Technologie Mécanique,4.5,1.5,1.5,1.5
+IMI2/3,Analyse,3.0,1.5,1.5,0.0
+IMI2/3,Gestion,1.5,1.5,0.0,0.0
+IMI2/3,Droit,1.5,1.5,0.0,0.0
+IMI2/3,Algébre2,3.0,1.5,1.5,0.0
+IMI2/3,Ondes Propagation,3.0,1.5,1.5,0.0
+IMI2/3,Mecaniques des solides,4.5,1.5,1.5,1.5
+IMI2/3,Electro.puissance,4.5,1.5,1.5,1.5
+IMI2/3,Capteurs,4.5,1.5,1.5,1.5
+IMI2/3,Anglais,1.5,0.0,1.5,0.0
+IMI2/3,Programmation orientée,3.0,1.5,0.0,1.5
+IMI3/1,Thermodynamique appliquées,3.0,1.5,0.0,1.5
+IMI3/1,Instrumentations optiques,3.0,1.5,0.0,1.5
+IMI3/1,G.M.A.O,3.0,1.5,0.0,1.5
+IMI3/1,Tableau de bord,1.5,1.5,0.0,0.0
+IMI3/1,Mécanique des fluides,3.0,1.5,0.0,1.5
+IMI3/1,Anglais,1.5,0.0,1.5,0.0
+IMI3/1,Réseaux Informatiques,3.0,1.5,1.5,0.0
+IMI3/1,Traitement de numerique,3.0,1.5,0.0,1.5
+IMI3/1,Thermique Industrielle,3.0,1.5,0.0,1.5
+IMI3/1,Arabe,1.5,0.0,1.5,0.0
+IMI3/1,Micro_contrôleurs_DSP,3.0,1.5,0.0,1.5
+IMI3/1,G.P.A.O,3.0,1.5,0.0,1.5
+IMI3/1,Français,1.5,1.5,0.0,0.0
+IMI3/1,Marketing,1.5,1.5,0.0,0.0
+IMI3/2,Thermodynamique appliquées,3.0,1.5,0.0,1.5
+IMI3/2,Instrumentations optiques,3.0,1.5,0.0,1.5
+IMI3/2,G.M.A.O,3.0,1.5,0.0,1.5
+IMI3/2,Tableau de bord,1.5,1.5,0.0,0.0
+IMI3/2,Mécanique des fluides,3.0,1.5,0.0,1.5
+IMI3/2,Anglais,1.5,0.0,1.5,0.0
+IMI3/2,Réseaux Informatiques,3.0,1.5,1.5,0.0
+IMI3/2,Traitement de numerique,3.0,1.5,0.0,1.5
+IMI3/2,Thermique Industrielle,3.0,1.5,0.0,1.5
+IMI3/2,Arabe,1.5,0.0,1.5,0.0
+IMI3/2,Micro_contrôleurs_DSP,3.0,1.5,0.0,1.5
+IMI3/2,G.P.A.O,3.0,1.5,0.0,1.5
+IMI3/2,Français,1.5,1.5,0.0,0.0
+IMI3/2,Marketing,1.5,1.5,0.0,0.0
+IMI4/1,G.R.H,1.5,1.5,0.0,0.0
+IMI4/1,Mécanique des milieux,3.0,1.5,0.0,1.5
+IMI4/1,CEM securite,3.0,1.5,0.0,1.5
+IMI4/1,CFAO systemes,3.0,1.5,0.0,1.5
+IMI4/1,Sciences des Matériaux,1.5,1.5,0.0,0.0
+IMI4/1,Mecanique Vibratoire,1.5,1.5,0.0,0.0
+IMI4/1,Management projet,1.5,1.5,0.0,0.0
+IMI4/1,Informatique pour l'instrimentation,3.0,1.5,0.0,1.5
+IMI4/1,Anglais,1.5,0.0,1.5,0.0
+IMI4/1,Commande des machines,3.0,1.5,0.0,1.5
+IMI4/1,Capteurs.int.com,1.5,1.5,0.0,0.0
+IMI4/1,Micro-Electronique,3.0,1.5,0.0,1.5
+IMI4/1,Intelligence artific,3.0,1.5,0.0,1.5
+IMI4/1,Temps réel,3.0,1.5,0.0,1.5
+IMI4/1,Aerodynamique,3.0,1.5,0.0,1.5
+IMI4/2,G.R.H,1.5,1.5,0.0,0.0
+IMI4/2,Mécanique des milieux,3.0,1.5,0.0,1.5
+IMI4/2,CEM securite,3.0,1.5,0.0,1.5
+IMI4/2,CFAO systemes,3.0,1.5,0.0,1.5
+IMI4/2,Sciences des Matériaux,1.5,1.5,0.0,0.0
+IMI4/2,Mecanique Vibratoire,1.5,1.5,0.0,0.0
+IMI4/2,Management projet,1.5,1.5,0.0,0.0
+IMI4/2,Informatique pour l'instrimentation,3.0,1.5,0.0,1.5
+IMI4/2,Anglais,1.5,0.0,1.5,0.0
+IMI4/2,Commande des machines,3.0,1.5,0.0,1.5
+IMI4/2,Capteurs.int.com,1.5,1.5,0.0,0.0
+IMI4/2,Micro-Electronique,3.0,1.5,0.0,1.5
+IMI4/2,Intelligence artific,3.0,1.5,0.0,1.5
+IMI4/2,Temps réel,3.0,1.5,0.0,1.5
+IMI4/2,Aerodynamique,3.0,1.5,0.0,1.5
+RT2/1,Techniques de transmission,3.0,1.5,1.5,0.0
+RT2/1,Réseaux locaux,3.0,1.5,1.5,0.0
+RT2/1,Anglais,1.5,0.0,1.5,0.0
+RT2/1,Algébre2,3.0,1.5,1.5,0.0
+RT2/1,Analyse2,3.0,1.5,1.5,0.0
+RT2/1,Bases de donnees,3.0,1.5,0.0,1.5
+RT2/1,Ondes Propagation,3.0,1.5,1.5,0.0
+RT2/1,Compatibilité,1.5,1.5,0.0,0.0
+RT2/1,Atelier Java,1.5,1.5,0.0,0.0
+RT2/1,Unix,1.5,1.5,0.0,0.0
+RT2/1,Technologie de web,1.5,0.0,0.0,1.5
+RT2/1,Téléinformatique,4.5,1.5,1.5,1.5
+RT2/1,Droit,1.5,1.5,0.0,0.0
+RT2/2,Techniques de transmission,3.0,1.5,1.5,0.0
+RT2/2,Réseaux locaux,3.0,1.5,1.5,0.0
+RT2/2,Anglais,1.5,0.0,1.5,0.0
+RT2/2,Algébre2,3.0,1.5,1.5,0.0
+RT2/2,Analyse2,3.0,1.5,1.5,0.0
+RT2/2,Bases de donnees,3.0,1.5,0.0,1.5
+RT2/2,Ondes Propagation,3.0,1.5,1.5,0.0
+RT2/2,Compatibilité,1.5,1.5,0.0,0.0
+RT2/2,Atelier Java,1.5,1.5,0.0,0.0
+RT2/2,Unix,1.5,1.5,0.0,0.0
+RT2/2,Technologie de web,1.5,0.0,0.0,1.5
+RT2/2,Téléinformatique,4.5,1.5,1.5,1.5
+RT2/2,Droit,1.5,1.5,0.0,0.0
+RT2/3,Techniques de transmission,3.0,1.5,1.5,0.0
+RT2/3,Réseaux locaux,3.0,1.5,1.5,0.0
+RT2/3,Anglais,1.5,0.0,1.5,0.0
+RT2/3,Algébre2,3.0,1.5,1.5,0.0
+RT2/3,Analyse2,3.0,1.5,1.5,0.0
+RT2/3,Bases de donnees,3.0,1.5,0.0,1.5
+RT2/3,Ondes Propagation,3.0,1.5,1.5,0.0
+RT2/3,Compatibilité,1.5,1.5,0.0,0.0
+RT2/3,Atelier Java,1.5,1.5,0.0,0.0
+RT2/3,Unix,1.5,1.5,0.0,0.0
+RT2/3,Technologie de web,1.5,0.0,0.0,1.5
+RT2/3,Téléinformatique,4.5,1.5,1.5,1.5
+RT2/3,Droit,1.5,1.5,0.0,0.0
+RT3/1,Français,1.5,1.5,0.0,0.0
+RT3/1,Processus Stochastiques,1.5,1.5,0.0,0.0
+RT3/1,Securites des reseaux,3.0,1.5,0.0,1.5
+RT3/1,Ingénierie protocoles,1.5,1.5,0.0,0.0
+RT3/1,Projet personnel,1.5,0.0,0.0,1.5
+RT3/1,Marketing,1.5,1.5,0.0,0.0
+RT3/1,Reseaux radiomobiles,1.5,1.5,0.0,0.0
+RT3/1,Logique,1.5,1.5,0.0,0.0
+RT3/1,Developpement javaEE,3.0,1.5,0.0,1.5
+RT3/1,Anglais,1.5,0.0,1.5,0.0
+RT3/1,Analyse des données,3.0,1.5,0.0,1.5
+RT3/1,Administration et surveillance,3.0,1.5,0.0,1.5
+RT3/1,Analyse Numérique,3.0,1.5,0.0,1.5
+RT3/1,Signaux Systèmes,3.0,1.5,0.0,1.5
+RT3/1,Administration de bases,3.0,1.5,0.0,1.5
+RT3/2,Français,1.5,1.5,0.0,0.0
+RT3/2,Processus Stochastiques,1.5,1.5,0.0,0.0
+RT3/2,Securites des reseaux,3.0,1.5,0.0,1.5
+RT3/2,Ingénierie protocoles,1.5,1.5,0.0,0.0
+RT3/2,Projet personnel,1.5,0.0,0.0,1.5
+RT3/2,Marketing,1.5,1.5,0.0,0.0
+RT3/2,Reseaux radiomobiles,1.5,1.5,0.0,0.0
+RT3/2,Logique,1.5,1.5,0.0,0.0
+RT3/2,Developpement javaEE,3.0,1.5,0.0,1.5
+RT3/2,Anglais,1.5,0.0,1.5,0.0
+RT3/2,Analyse des données,3.0,1.5,0.0,1.5
+RT3/2,Administration et surveillance,3.0,1.5,0.0,1.5
+RT3/2,Analyse Numérique,3.0,1.5,0.0,1.5
+RT3/2,Signaux Systèmes,3.0,1.5,0.0,1.5
+RT3/2,Administration de bases,3.0,1.5,0.0,1.5
+RT4/1,Théorie des langages,1.5,1.5,0.0,0.0
+RT4/1,Fondements systèmes,3.0,1.5,0.0,1.5
+RT4/1,Théorie.information,1.5,1.5,0.0,0.0
+RT4/1,Anglais,1.5,0.0,1.5,0.0
+RT4/1,Cloud et virtualisation,3.0,1.5,0.0,1.5
+RT4/1,Traitement d'images,3.0,1.5,0.0,1.5
+RT4/1,DEEP Learnng,3.0,1.5,0.0,1.5
+RT4/1,Business Intelligence,3.0,1.5,0.0,1.5
+RT4/1,G.R.H,1.5,1.5,0.0,0.0
+RT4/1,Evaluation des Performances,3.0,1.5,0.0,1.5
+RT4/1,Management projet,1.5,1.5,0.0,0.0
+RT4/1,Big Data,3.0,1.5,0.0,1.5
+RT4/1,Realite virtuelle,1.5,0.0,0.0,1.5
+RT4/1,Cryptographie,1.5,0.0,0.0,1.5
+RT4/2,Théorie des langages,1.5,1.5,0.0,0.0
+RT4/2,Fondements systèmes,3.0,1.5,0.0,1.5
+RT4/2,Théorie.information,1.5,1.5,0.0,0.0
+RT4/2,Anglais,1.5,0.0,1.5,0.0
+RT4/2,Cloud et virtualisation,3.0,1.5,0.0,1.5
+RT4/2,Traitement d'images,3.0,1.5,0.0,1.5
+RT4/2,DEEP Learnng,3.0,1.5,0.0,1.5
+RT4/2,Business Intelligence,3.0,1.5,0.0,1.5
+RT4/2,G.R.H,1.5,1.5,0.0,0.0
+RT4/2,Evaluation des Performances,3.0,1.5,0.0,1.5
+RT4/2,Management projet,1.5,1.5,0.0,0.0
+RT4/2,Big Data,3.0,1.5,0.0,1.5
+RT4/2,Realite virtuelle,1.5,0.0,0.0,1.5
+RT4/2,Cryptographie,1.5,0.0,0.0,1.5
+MPI1/1,Analyse,3.0,1.5,1.5,0.0
+MPI1/1,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI1/1,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI1/1,Informatique,1.5,0.0,0.0,1.5
+MPI1/1,Electronique,4.5,1.5,1.5,1.5
+MPI1/1,Algébre,3.0,1.5,1.5,0.0
+MPI1/1,Français,1.5,1.5,0.0,0.0
+MPI1/1,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI1/1,Anglais,1.5,0.0,1.5,0.0
+MPI1/1,Thermodynamique,3.0,1.5,1.5,0.0
+MPI1/1,Programmation II,1.5,1.5,0.0,0.0
+MPI1/1,Economie,1.5,1.5,0.0,0.0
+MPI1/2,Analyse,3.0,1.5,1.5,0.0
+MPI1/2,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI1/2,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI1/2,Informatique,1.5,0.0,0.0,1.5
+MPI1/2,Electronique,4.5,1.5,1.5,1.5
+MPI1/2,Algébre,3.0,1.5,1.5,0.0
+MPI1/2,Français,1.5,1.5,0.0,0.0
+MPI1/2,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI1/2,Anglais,1.5,0.0,1.5,0.0
+MPI1/2,Thermodynamique,3.0,1.5,1.5,0.0
+MPI1/2,Programmation II,1.5,1.5,0.0,0.0
+MPI1/2,Economie,1.5,1.5,0.0,0.0
+MPI1/3,Analyse,3.0,1.5,1.5,0.0
+MPI1/3,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI1/3,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI1/3,Informatique,1.5,0.0,0.0,1.5
+MPI1/3,Electronique,4.5,1.5,1.5,1.5
+MPI1/3,Algébre,3.0,1.5,1.5,0.0
+MPI1/3,Français,1.5,1.5,0.0,0.0
+MPI1/3,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI1/3,Anglais,1.5,0.0,1.5,0.0
+MPI1/3,Thermodynamique,3.0,1.5,1.5,0.0
+MPI1/3,Programmation II,1.5,1.5,0.0,0.0
+MPI1/3,Economie,1.5,1.5,0.0,0.0
+MPI1/4,Analyse,3.0,1.5,1.5,0.0
+MPI1/4,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI1/4,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI1/4,Informatique,1.5,0.0,0.0,1.5
+MPI1/4,Electronique,4.5,1.5,1.5,1.5
+MPI1/4,Algébre,3.0,1.5,1.5,0.0
+MPI1/4,Français,1.5,1.5,0.0,0.0
+MPI1/4,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI1/4,Anglais,1.5,0.0,1.5,0.0
+MPI1/4,Thermodynamique,3.0,1.5,1.5,0.0
+MPI1/4,Programmation II,1.5,1.5,0.0,0.0
+MPI1/4,Economie,1.5,1.5,0.0,0.0
+MPI2/1,Analyse,3.0,1.5,1.5,0.0
+MPI2/1,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI2/1,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI2/1,Informatique,1.5,0.0,0.0,1.5
+MPI2/1,Electronique,4.5,1.5,1.5,1.5
+MPI2/1,Algébre,3.0,1.5,1.5,0.0
+MPI2/1,Français,1.5,1.5,0.0,0.0
+MPI2/1,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI2/1,Anglais,1.5,0.0,1.5,0.0
+MPI2/1,Thermodynamique,3.0,1.5,1.5,0.0
+MPI2/1,Programmation II,1.5,1.5,0.0,0.0
+MPI2/1,Economie,1.5,1.5,0.0,0.0
+MPI2/2,Analyse,3.0,1.5,1.5,0.0
+MPI2/2,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI2/2,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI2/2,Informatique,1.5,0.0,0.0,1.5
+MPI2/2,Electronique,4.5,1.5,1.5,1.5
+MPI2/2,Algébre,3.0,1.5,1.5,0.0
+MPI2/2,Français,1.5,1.5,0.0,0.0
+MPI2/2,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI2/2,Anglais,1.5,0.0,1.5,0.0
+MPI2/2,Thermodynamique,3.0,1.5,1.5,0.0
+MPI2/2,Programmation II,1.5,1.5,0.0,0.0
+MPI2/2,Economie,1.5,1.5,0.0,0.0
+MPI2/3,Analyse,3.0,1.5,1.5,0.0
+MPI2/3,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI2/3,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI2/3,Informatique,1.5,0.0,0.0,1.5
+MPI2/3,Electronique,4.5,1.5,1.5,1.5
+MPI2/3,Algébre,3.0,1.5,1.5,0.0
+MPI2/3,Français,1.5,1.5,0.0,0.0
+MPI2/3,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI2/3,Anglais,1.5,0.0,1.5,0.0
+MPI2/3,Thermodynamique,3.0,1.5,1.5,0.0
+MPI2/3,Programmation II,1.5,1.5,0.0,0.0
+MPI2/3,Economie,1.5,1.5,0.0,0.0
+MPI2/4,Analyse,3.0,1.5,1.5,0.0
+MPI2/4,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI2/4,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI2/4,Informatique,1.5,0.0,0.0,1.5
+MPI2/4,Electronique,4.5,1.5,1.5,1.5
+MPI2/4,Algébre,3.0,1.5,1.5,0.0
+MPI2/4,Français,1.5,1.5,0.0,0.0
+MPI2/4,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI2/4,Anglais,1.5,0.0,1.5,0.0
+MPI2/4,Thermodynamique,3.0,1.5,1.5,0.0
+MPI2/4,Programmation II,1.5,1.5,0.0,0.0
+MPI2/4,Economie,1.5,1.5,0.0,0.0
+MPI3/1,Analyse,3.0,1.5,1.5,0.0
+MPI3/1,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI3/1,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI3/1,Informatique,1.5,0.0,0.0,1.5
+MPI3/1,Electronique,4.5,1.5,1.5,1.5
+MPI3/1,Algébre,3.0,1.5,1.5,0.0
+MPI3/1,Français,1.5,1.5,0.0,0.0
+MPI3/1,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI3/1,Anglais,1.5,0.0,1.5,0.0
+MPI3/1,Thermodynamique,3.0,1.5,1.5,0.0
+MPI3/1,Programmation II,1.5,1.5,0.0,0.0
+MPI3/1,Economie,1.5,1.5,0.0,0.0
+MPI3/2,Analyse,3.0,1.5,1.5,0.0
+MPI3/2,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI3/2,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI3/2,Informatique,1.5,0.0,0.0,1.5
+MPI3/2,Electronique,4.5,1.5,1.5,1.5
+MPI3/2,Algébre,3.0,1.5,1.5,0.0
+MPI3/2,Français,1.5,1.5,0.0,0.0
+MPI3/2,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI3/2,Anglais,1.5,0.0,1.5,0.0
+MPI3/2,Thermodynamique,3.0,1.5,1.5,0.0
+MPI3/2,Programmation II,1.5,1.5,0.0,0.0
+MPI3/2,Economie,1.5,1.5,0.0,0.0
+MPI3/3,Analyse,3.0,1.5,1.5,0.0
+MPI3/3,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI3/3,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI3/3,Informatique,1.5,0.0,0.0,1.5
+MPI3/3,Electronique,4.5,1.5,1.5,1.5
+MPI3/3,Algébre,3.0,1.5,1.5,0.0
+MPI3/3,Français,1.5,1.5,0.0,0.0
+MPI3/3,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI3/3,Anglais,1.5,0.0,1.5,0.0
+MPI3/3,Thermodynamique,3.0,1.5,1.5,0.0
+MPI3/3,Programmation II,1.5,1.5,0.0,0.0
+MPI3/3,Economie,1.5,1.5,0.0,0.0
+MPI3/4,Analyse,3.0,1.5,1.5,0.0
+MPI3/4,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI3/4,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI3/4,Informatique,1.5,0.0,0.0,1.5
+MPI3/4,Electronique,4.5,1.5,1.5,1.5
+MPI3/4,Algébre,3.0,1.5,1.5,0.0
+MPI3/4,Français,1.5,1.5,0.0,0.0
+MPI3/4,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI3/4,Anglais,1.5,0.0,1.5,0.0
+MPI3/4,Thermodynamique,3.0,1.5,1.5,0.0
+MPI3/4,Programmation II,1.5,1.5,0.0,0.0
+MPI3/4,Economie,1.5,1.5,0.0,0.0
+MPI4/1,Analyse,3.0,1.5,1.5,0.0
+MPI4/1,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI4/1,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI4/1,Informatique,1.5,0.0,0.0,1.5
+MPI4/1,Electronique,4.5,1.5,1.5,1.5
+MPI4/1,Algébre,3.0,1.5,1.5,0.0
+MPI4/1,Français,1.5,1.5,0.0,0.0
+MPI4/1,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI4/1,Anglais,1.5,0.0,1.5,0.0
+MPI4/1,Thermodynamique,3.0,1.5,1.5,0.0
+MPI4/1,Programmation II,1.5,1.5,0.0,0.0
+MPI4/1,Economie,1.5,1.5,0.0,0.0
+MPI4/2,Analyse,3.0,1.5,1.5,0.0
+MPI4/2,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI4/2,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI4/2,Informatique,1.5,0.0,0.0,1.5
+MPI4/2,Electronique,4.5,1.5,1.5,1.5
+MPI4/2,Algébre,3.0,1.5,1.5,0.0
+MPI4/2,Français,1.5,1.5,0.0,0.0
+MPI4/2,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI4/2,Anglais,1.5,0.0,1.5,0.0
+MPI4/2,Thermodynamique,3.0,1.5,1.5,0.0
+MPI4/2,Programmation II,1.5,1.5,0.0,0.0
+MPI4/2,Economie,1.5,1.5,0.0,0.0
+MPI4/3,Analyse,3.0,1.5,1.5,0.0
+MPI4/3,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI4/3,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI4/3,Informatique,1.5,0.0,0.0,1.5
+MPI4/3,Electronique,4.5,1.5,1.5,1.5
+MPI4/3,Algébre,3.0,1.5,1.5,0.0
+MPI4/3,Français,1.5,1.5,0.0,0.0
+MPI4/3,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI4/3,Anglais,1.5,0.0,1.5,0.0
+MPI4/3,Thermodynamique,3.0,1.5,1.5,0.0
+MPI4/3,Programmation II,1.5,1.5,0.0,0.0
+MPI4/3,Economie,1.5,1.5,0.0,0.0
+MPI4/4,Analyse,3.0,1.5,1.5,0.0
+MPI4/4,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI4/4,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI4/4,Informatique,1.5,0.0,0.0,1.5
+MPI4/4,Electronique,4.5,1.5,1.5,1.5
+MPI4/4,Algébre,3.0,1.5,1.5,0.0
+MPI4/4,Français,1.5,1.5,0.0,0.0
+MPI4/4,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI4/4,Anglais,1.5,0.0,1.5,0.0
+MPI4/4,Thermodynamique,3.0,1.5,1.5,0.0
+MPI4/4,Programmation II,1.5,1.5,0.0,0.0
+MPI4/4,Economie,1.5,1.5,0.0,0.0
+MPI5/1,Analyse,3.0,1.5,1.5,0.0
+MPI5/1,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI5/1,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI5/1,Informatique,1.5,0.0,0.0,1.5
+MPI5/1,Electronique,4.5,1.5,1.5,1.5
+MPI5/1,Algébre,3.0,1.5,1.5,0.0
+MPI5/1,Français,1.5,1.5,0.0,0.0
+MPI5/1,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI5/1,Anglais,1.5,0.0,1.5,0.0
+MPI5/1,Thermodynamique,3.0,1.5,1.5,0.0
+MPI5/1,Programmation II,1.5,1.5,0.0,0.0
+MPI5/1,Economie,1.5,1.5,0.0,0.0
+MPI5/2,Analyse,3.0,1.5,1.5,0.0
+MPI5/2,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI5/2,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI5/2,Informatique,1.5,0.0,0.0,1.5
+MPI5/2,Electronique,4.5,1.5,1.5,1.5
+MPI5/2,Algébre,3.0,1.5,1.5,0.0
+MPI5/2,Français,1.5,1.5,0.0,0.0
+MPI5/2,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI5/2,Anglais,1.5,0.0,1.5,0.0
+MPI5/2,Thermodynamique,3.0,1.5,1.5,0.0
+MPI5/2,Programmation II,1.5,1.5,0.0,0.0
+MPI5/2,Economie,1.5,1.5,0.0,0.0
+MPI5/3,Analyse,3.0,1.5,1.5,0.0
+MPI5/3,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI5/3,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI5/3,Informatique,1.5,0.0,0.0,1.5
+MPI5/3,Electronique,4.5,1.5,1.5,1.5
+MPI5/3,Algébre,3.0,1.5,1.5,0.0
+MPI5/3,Français,1.5,1.5,0.0,0.0
+MPI5/3,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI5/3,Anglais,1.5,0.0,1.5,0.0
+MPI5/3,Thermodynamique,3.0,1.5,1.5,0.0
+MPI5/3,Programmation II,1.5,1.5,0.0,0.0
+MPI5/3,Economie,1.5,1.5,0.0,0.0
+MPI5/4,Analyse,3.0,1.5,1.5,0.0
+MPI5/4,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI5/4,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI5/4,Informatique,1.5,0.0,0.0,1.5
+MPI5/4,Electronique,4.5,1.5,1.5,1.5
+MPI5/4,Algébre,3.0,1.5,1.5,0.0
+MPI5/4,Français,1.5,1.5,0.0,0.0
+MPI5/4,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI5/4,Anglais,1.5,0.0,1.5,0.0
+MPI5/4,Thermodynamique,3.0,1.5,1.5,0.0
+MPI5/4,Programmation II,1.5,1.5,0.0,0.0
+MPI5/4,Economie,1.5,1.5,0.0,0.0
+MPI6/1,Analyse,3.0,1.5,1.5,0.0
+MPI6/1,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI6/1,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI6/1,Informatique,1.5,0.0,0.0,1.5
+MPI6/1,Electronique,4.5,1.5,1.5,1.5
+MPI6/1,Algébre,3.0,1.5,1.5,0.0
+MPI6/1,Français,1.5,1.5,0.0,0.0
+MPI6/1,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI6/1,Anglais,1.5,0.0,1.5,0.0
+MPI6/1,Thermodynamique,3.0,1.5,1.5,0.0
+MPI6/1,Programmation II,1.5,1.5,0.0,0.0
+MPI6/1,Economie,1.5,1.5,0.0,0.0
+MPI6/2,Analyse,3.0,1.5,1.5,0.0
+MPI6/2,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI6/2,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI6/2,Informatique,1.5,0.0,0.0,1.5
+MPI6/2,Electronique,4.5,1.5,1.5,1.5
+MPI6/2,Algébre,3.0,1.5,1.5,0.0
+MPI6/2,Français,1.5,1.5,0.0,0.0
+MPI6/2,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI6/2,Anglais,1.5,0.0,1.5,0.0
+MPI6/2,Thermodynamique,3.0,1.5,1.5,0.0
+MPI6/2,Programmation II,1.5,1.5,0.0,0.0
+MPI6/2,Economie,1.5,1.5,0.0,0.0
+MPI6/3,Analyse,3.0,1.5,1.5,0.0
+MPI6/3,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI6/3,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI6/3,Informatique,1.5,0.0,0.0,1.5
+MPI6/3,Electronique,4.5,1.5,1.5,1.5
+MPI6/3,Algébre,3.0,1.5,1.5,0.0
+MPI6/3,Français,1.5,1.5,0.0,0.0
+MPI6/3,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI6/3,Anglais,1.5,0.0,1.5,0.0
+MPI6/3,Thermodynamique,3.0,1.5,1.5,0.0
+MPI6/3,Programmation II,1.5,1.5,0.0,0.0
+MPI6/3,Economie,1.5,1.5,0.0,0.0
+MPI6/4,Analyse,3.0,1.5,1.5,0.0
+MPI6/4,Systèmes logiques,4.5,1.5,1.5,1.5
+MPI6/4,Electromagnétisme,3.0,1.5,1.5,0.0
+MPI6/4,Informatique,1.5,0.0,0.0,1.5
+MPI6/4,Electronique,4.5,1.5,1.5,1.5
+MPI6/4,Algébre,3.0,1.5,1.5,0.0
+MPI6/4,Français,1.5,1.5,0.0,0.0
+MPI6/4,Algorithmique et structures,3.0,1.5,1.5,0.0
+MPI6/4,Anglais,1.5,0.0,1.5,0.0
+MPI6/4,Thermodynamique,3.0,1.5,1.5,0.0
+MPI6/4,Programmation II,1.5,1.5,0.0,0.0
+MPI6/4,Economie,1.5,1.5,0.0,0.0

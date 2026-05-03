@@ -76,10 +76,18 @@ python schedule_visualizer.py
 - Timetable grid by day and slot
 - Assignment table for dense review
 - Room and group navigation views
+- Class catalog from `data/INSAT_Class_Schedules.csv`
 - Search across course, group, room, day, and slot
 - Filters for day, group, and room
 - Scenario selector and regenerate button
 - JSON endpoint at `/api/schedule`
+
+To point the visualizer at another CSV:
+
+```bash
+$env:SCHED_CSV_PATH="D:\path\to\INSAT_Class_Schedules.csv"
+python schedule_visualizer.py
+```
 
 ## Troubleshooting
 

@@ -12,10 +12,13 @@ Then open:
 
 import os
 import re
+import csv
 import subprocess
 import sys
 import time
+import unicodedata
 from dataclasses import asdict, dataclass
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -34,6 +37,10 @@ DEFAULT_PROLOG_TIMEOUT = 120
 DAYS_ORDER = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
 SCENARIOS = ["demo", "gl3_only", "engineering", "full_campus"]
 PROJECT_ROOT = Path(__file__).parent
+DEFAULT_CSV_PATHS = [
+    PROJECT_ROOT / "data" / "INSAT_Class_Schedules.csv",
+    Path(r"d:\users\seif\Downloads\INSAT_Class_Schedules.csv"),
+]
 
 
 def get_prolog_timeout() -> int:
@@ -54,6 +61,160 @@ class Assignment:
     room_id: str
     day: str
     slot: int
+    course_name: str = ""
+    subject_name: str = ""
+    class_label: str = ""
+    session_type: str = ""
+    session_hours: float = 1.5
+    total_hours: float = 0.0
+    course_hours: float = 0.0
+    td_hours: float = 0.0
+    tp_hours: float = 0.0
+    metadata_source: str = "course_id"
+
+
+@dataclass
+class SubjectInfo:
+    class_label: str
+    group_id: str
+    subject: str
+    total_hours: float
+    course_hours: float
+    td_hours: float
+    tp_hours: float
+
+
+@dataclass
+class CourseInfo:
+    course_id: str
+    name: str
+    session_type: str
+    sessions_per_week: int
+
+
+def clean_text(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value or "")
+    ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
+    ascii_value = ascii_value.lower()
+    ascii_value = re.sub(r"\b(cours|td|tp|lec|lecture)\b", " ", ascii_value)
+    ascii_value = re.sub(r"[^a-z0-9]+", " ", ascii_value)
+    return re.sub(r"\s+", " ", ascii_value).strip()
+
+
+def parse_float(value: str) -> float:
+    try:
+        return float(str(value).replace(",", "."))
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def class_label_to_group_id(label: str) -> str:
+    match = re.match(r"^([A-Za-z]+)(\d+)\/(\d+)$", (label or "").strip())
+    if not match:
+        return clean_text(label).replace(" ", "_")
+
+    dept, year, section = match.groups()
+    dept = dept.lower()
+    year_num = int(year)
+    section_num = int(section)
+
+    if dept == "mpi":
+        return "mpi_{}".format(((year_num - 1) * 4) + section_num)
+
+    suffixes = "abcdefghijklmnopqrstuvwxyz"
+    suffix = suffixes[section_num - 1] if section_num <= len(suffixes) else str(section_num)
+    return "{}{}_{}".format(dept, year_num, suffix)
+
+
+def infer_session_type(course_id: str, fallback: str = "") -> str:
+    if course_id.endswith("_td"):
+        return "td"
+    if course_id.endswith("_tp"):
+        return "tp"
+    if course_id.endswith("_lec"):
+        return "lecture"
+    return fallback or "lecture"
+
+
+def resolve_csv_path() -> Optional[Path]:
+    env_path = os.environ.get("SCHED_CSV_PATH")
+    candidates = [Path(env_path)] if env_path else []
+    candidates.extend(DEFAULT_CSV_PATHS)
+    for path in candidates:
+        if path and path.exists():
+            return path
+    return None
+
+
+def load_subject_catalog() -> List[SubjectInfo]:
+    csv_path = resolve_csv_path()
+    if not csv_path:
+        return []
+
+    subjects: List[SubjectInfo] = []
+    with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            class_label = (row.get("Class") or "").strip()
+            subject = (row.get("Subject") or "").strip()
+            if not class_label or not subject:
+                continue
+            subjects.append(
+                SubjectInfo(
+                    class_label=class_label,
+                    group_id=class_label_to_group_id(class_label),
+                    subject=subject,
+                    total_hours=parse_float(row.get("Total_Hours", "0")),
+                    course_hours=parse_float(row.get("Course_Hours", "0")),
+                    td_hours=parse_float(row.get("TD_Hours", "0")),
+                    tp_hours=parse_float(row.get("TP_Hours", "0")),
+                )
+            )
+    return subjects
+
+
+def load_course_catalog() -> Dict[str, CourseInfo]:
+    courses_path = PROJECT_ROOT / "src" / "courses.pl"
+    if not courses_path.exists():
+        return {}
+
+    text = courses_path.read_text(encoding="utf-8", errors="replace")
+    pattern = re.compile(
+        r"course\(\s*([^,\s]+)\s*,\s*'([^']+)'\s*,\s*[^,]+,\s*[^,]+,\s*(\d+)\s*,\s*([^,\s]+)",
+        re.MULTILINE,
+    )
+    catalog: Dict[str, CourseInfo] = {}
+    for course_id, name, sessions_per_week, session_type in pattern.findall(text):
+        catalog[course_id] = CourseInfo(
+            course_id=course_id,
+            name=name,
+            session_type=session_type,
+            sessions_per_week=int(sessions_per_week),
+        )
+    return catalog
+
+
+def score_subject_match(course_name: str, subject: str) -> float:
+    left = clean_text(course_name)
+    right = clean_text(subject)
+    if not left or not right:
+        return 0.0
+    if left == right:
+        return 1.0
+    if left in right or right in left:
+        return 0.88
+    left_tokens = set(left.split())
+    right_tokens = set(right.split())
+    overlap = len(left_tokens & right_tokens) / max(1, len(left_tokens | right_tokens))
+    return max(overlap, SequenceMatcher(None, left, right).ratio())
+
+
+def subject_hours_for_type(subject: SubjectInfo, session_type: str) -> float:
+    if session_type == "td":
+        return subject.td_hours
+    if session_type == "tp":
+        return subject.tp_hours
+    return subject.course_hours
 
 
 class ScheduleParser:
@@ -162,6 +323,13 @@ class ScheduleVisualizer:
     """Build grouped and summary data for API consumers."""
 
     def __init__(self, assignments: List[Assignment]):
+        self.subject_catalog = load_subject_catalog()
+        self.course_catalog = load_course_catalog()
+        self.subjects_by_group: Dict[str, List[SubjectInfo]] = {}
+        for subject in self.subject_catalog:
+            self.subjects_by_group.setdefault(subject.group_id, []).append(subject)
+
+        assignments = [self.enrich_assignment(item) for item in assignments]
         self.assignments = sorted(
             assignments,
             key=lambda item: (
@@ -173,6 +341,48 @@ class ScheduleVisualizer:
             ),
         )
 
+    def enrich_assignment(self, item: Assignment) -> Assignment:
+        course_info = self.course_catalog.get(item.course_id)
+        course_name = course_info.name if course_info else item.course_id
+        session_type = infer_session_type(
+            item.course_id,
+            course_info.session_type if course_info else "",
+        )
+
+        candidates = [
+            subject
+            for subject in self.subjects_by_group.get(item.group_id, [])
+            if subject_hours_for_type(subject, session_type) > 0
+        ]
+        if not candidates:
+            candidates = self.subjects_by_group.get(item.group_id, [])
+
+        best_subject = None
+        best_score = 0.0
+        for subject in candidates:
+            score = score_subject_match(course_name, subject.subject)
+            if score > best_score:
+                best_score = score
+                best_subject = subject
+
+        if best_subject and best_score >= 0.42:
+            item.subject_name = best_subject.subject
+            item.class_label = best_subject.class_label
+            item.total_hours = best_subject.total_hours
+            item.course_hours = best_subject.course_hours
+            item.td_hours = best_subject.td_hours
+            item.tp_hours = best_subject.tp_hours
+            item.session_hours = subject_hours_for_type(best_subject, session_type) or 1.5
+            item.metadata_source = "csv"
+        else:
+            item.subject_name = re.sub(r"\s+-\s+(Cours|TD|TP)$", "", course_name)
+            item.class_label = item.group_id
+            item.metadata_source = "prolog"
+
+        item.course_name = course_name
+        item.session_type = session_type
+        return item
+
     def summary(self) -> Dict[str, int]:
         by_day = self.by_day()
         return {
@@ -182,6 +392,7 @@ class ScheduleVisualizer:
             "courses": len({item.course_id for item in self.assignments}),
             "days": sum(1 for day in by_day.values() if day),
             "max_slot": max((item.slot for item in self.assignments), default=0),
+            "csv_matches": sum(1 for item in self.assignments if item.metadata_source == "csv"),
         }
 
     def by_day(self) -> Dict[str, List[Dict]]:
@@ -201,15 +412,21 @@ class ScheduleVisualizer:
     def payload(self, scenario: str, elapsed_ms: int) -> Dict:
         rooms = sorted({item.room_id for item in self.assignments})
         groups = sorted({item.group_id for item in self.assignments})
-        courses = sorted({item.course_id for item in self.assignments})
+        courses = sorted({item.subject_name or item.course_id for item in self.assignments})
+        class_catalog: Dict[str, List[Dict]] = {}
+        for subject in self.subject_catalog:
+            class_catalog.setdefault(subject.class_label, []).append(asdict(subject))
         return {
             "scenario": scenario,
             "elapsed_ms": elapsed_ms,
+            "csv_loaded": bool(self.subject_catalog),
+            "csv_path": str(resolve_csv_path() or ""),
             "days": DAYS_ORDER,
             "slots": list(range(1, self.summary()["max_slot"] + 1)),
             "rooms": rooms,
             "groups": groups,
             "courses": courses,
+            "class_catalog": class_catalog,
             "summary": self.summary(),
             "assignments": [asdict(item) for item in self.assignments],
             "by_day": self.by_day(),
@@ -565,7 +782,7 @@ HTML_PAGE = r"""<!doctype html>
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(5, minmax(140px, 1fr));
+      grid-template-columns: repeat(6, minmax(130px, 1fr));
       gap: 12px;
     }
 
@@ -817,6 +1034,7 @@ HTML_PAGE = r"""<!doctype html>
         <button data-view="table">Assignments</button>
         <button data-view="rooms">Rooms</button>
         <button data-view="groups">Groups</button>
+        <button data-view="catalog">Class Catalog</button>
       </nav>
       <div class="side-meta">
         <div id="sideScenario">Scenario: --</div>
@@ -862,7 +1080,7 @@ HTML_PAGE = r"""<!doctype html>
         <section class="toolbar">
           <div class="field">
             <label for="search">Search</label>
-            <input id="search" type="search" placeholder="course, group, room">
+            <input id="search" type="search" placeholder="subject, class, group, room">
           </div>
           <div class="field">
             <label for="dayFilter">Day</label>
@@ -941,6 +1159,7 @@ HTML_PAGE = r"""<!doctype html>
         stat("Rooms", s.rooms),
         stat("Groups", s.groups),
         stat("Courses", s.courses),
+        stat("CSV matched", s.csv_matches),
         stat("Days", `${s.days}/6`)
       ].join("");
     }
@@ -966,7 +1185,7 @@ HTML_PAGE = r"""<!doctype html>
       const room = els.roomFilter.value;
 
       state.filtered = state.data.assignments.filter(item => {
-        const text = `${item.course_id} ${item.group_id} ${item.room_id} ${item.day} ${item.slot}`.toLowerCase();
+        const text = `${item.course_id} ${item.course_name} ${item.subject_name} ${item.class_label} ${item.group_id} ${item.room_id} ${item.day} ${item.slot}`.toLowerCase();
         return (!q || text.includes(q))
           && (!day || item.day === day)
           && (!group || item.group_id === group)
@@ -977,8 +1196,8 @@ HTML_PAGE = r"""<!doctype html>
 
     function courseBlock(item) {
       return `<div class="course">
-        <strong>${item.course_id}</strong>
-        <span>${item.group_id}</span>
+        <strong>${item.subject_name || item.course_name || item.course_id}</strong>
+        <span>${item.class_label || item.group_id} / ${item.session_type.toUpperCase()} / ${item.session_hours}h</span>
         <span>${item.room_id}</span>
       </div>`;
     }
@@ -1010,14 +1229,50 @@ HTML_PAGE = r"""<!doctype html>
       let rows = items.map(item => `<tr>
         <td>${titleCase(item.day)}</td>
         <td>${item.slot}</td>
-        <td>${item.course_id}</td>
-        <td>${item.group_id}</td>
+        <td>${item.subject_name || item.course_name || item.course_id}</td>
+        <td>${item.class_label || item.group_id}</td>
+        <td>${item.session_type}</td>
+        <td>${item.session_hours}h</td>
         <td>${item.room_id}</td>
       </tr>`).join("");
       els.listView.innerHTML = `<table>
-        <thead><tr><th>Day</th><th>Slot</th><th>Course</th><th>Group</th><th>Room</th></tr></thead>
+        <thead><tr><th>Day</th><th>Slot</th><th>Subject</th><th>Class</th><th>Type</th><th>Hours</th><th>Room</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>`;
+    }
+
+    function renderCatalog() {
+      const entries = Object.entries(state.data.class_catalog || {});
+      if (!entries.length) {
+        els.listView.innerHTML = `<div class="empty">No CSV catalog was loaded. Set SCHED_CSV_PATH or add data/INSAT_Class_Schedules.csv.</div>`;
+        return;
+      }
+
+      const q = els.search.value.trim().toLowerCase();
+      const group = els.groupFilter.value;
+      let rows = [];
+      entries.forEach(([classLabel, subjects]) => {
+        subjects.forEach(subject => {
+          const text = `${classLabel} ${subject.group_id} ${subject.subject}`.toLowerCase();
+          if (q && !text.includes(q)) return;
+          if (group && subject.group_id !== group) return;
+          rows.push(`<tr>
+            <td>${classLabel}</td>
+            <td>${subject.subject}</td>
+            <td>${subject.total_hours}h</td>
+            <td>${subject.course_hours}h</td>
+            <td>${subject.td_hours}h</td>
+            <td>${subject.tp_hours}h</td>
+          </tr>`);
+        });
+      });
+
+      els.listView.innerHTML = rows.length
+        ? `<table>
+            <thead><tr><th>Class</th><th>Subject</th><th>Total</th><th>Course</th><th>TD</th><th>TP</th></tr></thead>
+            <tbody>${rows.join("")}</tbody>
+          </table>`
+        : `<div class="empty">No class catalog entries match the current filters.</div>`;
     }
 
     function renderCurrentView() {
@@ -1030,7 +1285,8 @@ HTML_PAGE = r"""<!doctype html>
         grid: "Timetable",
         table: "Assignments",
         rooms: "Rooms",
-        groups: "Groups"
+        groups: "Groups",
+        catalog: "Class Catalog"
       };
       els.viewTitle.textContent = titles[state.view];
       els.status.textContent = `${state.filtered.length} visible`;
@@ -1038,6 +1294,11 @@ HTML_PAGE = r"""<!doctype html>
 
       if (isGrid) {
         renderGrid();
+        return;
+      }
+
+      if (state.view === "catalog") {
+        renderCatalog();
         return;
       }
 
@@ -1066,7 +1327,7 @@ HTML_PAGE = r"""<!doctype html>
 
         state.data = data;
         state.filtered = data.assignments;
-        els.subtitle.textContent = `${titleCase(data.scenario)} generated ${data.summary.total_assignments} assignments.`;
+        els.subtitle.textContent = `${titleCase(data.scenario)} generated ${data.summary.total_assignments} assignments. ${data.csv_loaded ? "CSV class catalog loaded." : "CSV class catalog not found."}`;
         els.sideScenario.textContent = `Scenario: ${data.scenario}`;
         els.sideRuntime.textContent = `Runtime: ${(data.elapsed_ms / 1000).toFixed(1)}s`;
         els.signalScenario.textContent = data.scenario;

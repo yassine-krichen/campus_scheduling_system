@@ -38,6 +38,7 @@ The web UI includes:
 - Day and slot timetable grid
 - Searchable assignment table
 - Room-focused and group-focused navigation
+- CSV-backed class catalog with subject and hour totals
 - Day, room, and group filters
 - Scenario selector
 - Regenerate button
@@ -58,6 +59,27 @@ $env:SCHED_SCENARIO="gl3_only"
 $env:SCHED_LIMIT="1"
 $env:SCHED_TIMEOUT="120"
 python schedule_visualizer.py
+```
+
+## CSV Class Catalog
+
+The visualizer enriches timetable cards with real class labels, subject names, and hour totals from:
+
+```text
+data/INSAT_Class_Schedules.csv
+```
+
+To use another CSV file:
+
+```bash
+$env:SCHED_CSV_PATH="D:\path\to\INSAT_Class_Schedules.csv"
+python schedule_visualizer.py
+```
+
+Expected columns:
+
+```text
+Class,Subject,Total_Hours,Course_Hours,TD_Hours,TP_Hours
 ```
 
 Available scenarios:
