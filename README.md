@@ -181,6 +181,57 @@ After loading, all public predicates can be queried interactively:
 
 ---
 
+## Visualizing Schedules (Python UI)
+
+After generating schedules, use the included Python visualization tools to view and analyze them.
+
+### Option 1: Interactive Terminal Viewer (Recommended)
+
+```bash
+python schedule_viewer.py
+```
+
+Menu options:
+- **Summary** — Statistics (total assignments, rooms in use, etc.)
+- **By Room** — What's scheduled in each room and when
+- **By Group** — Each group's timetable
+- **By Day** — Daily breakdown with all activities
+- **Timetable Grid** — Slot-by-slot view
+- **All Views** — Show everything at once
+
+### Option 2: Graphical Viewer (Tkinter)
+
+```bash
+python schedule_visualizer.py
+```
+
+Or from terminal viewer: `python schedule_viewer.py --gui`
+
+Click buttons to switch between Room/Group/Day views and Summary.
+
+### Example Usage
+
+**Quick 3-step visualization:**
+```bash
+python schedule_viewer.py
+# Press: 1 (Summary), Enter
+# Press: 0 (Exit), Enter
+```
+
+**View everything at once:**
+```bash
+echo "6" | python schedule_viewer.py
+```
+
+**Save to file:**
+```bash
+echo "1" | python schedule_viewer.py > my_schedule.txt 2>&1
+```
+
+For detailed documentation, see: **QUICKSTART_VISUALIZATION.md** and **VISUALIZATION_README.md**
+
+---
+
 ## Module Responsibilities
 
 ### `config.pl` — Person 1

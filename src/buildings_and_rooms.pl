@@ -32,7 +32,7 @@
 %    language_lab      – booths, headsets, projector
 % ============================================================
 
-:- module(buildings_and_rooms, [building/3, room/6]).
+:- module(buildings_and_rooms, [building/3, room/6, equipment_compatible/2]).
 
 % ============================================================
 %  BUILDINGS

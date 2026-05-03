@@ -95,8 +95,8 @@ daily_load_imbalance(Assignments, Imbalance) :-
     findall(DayTotal,
         (   day(D),
             findall(E,
-                (   member(assign(C, G, R, slot(D, _I)), Assignments),
-                    energy:assignment_energy(assign(C, G, R, slot(D, _I)), E)
+                (   member(assign(C, G, R, slot(D, _)), Assignments),
+                    energy:assignment_energy(assign(C, G, R, slot(D, _)), E)
                 ),
                 Es),
             Es \= [],
