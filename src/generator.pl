@@ -32,8 +32,13 @@
 %      per assignment (building threshold not exceeded).
 %
 %  Slot ordering  Monday→Saturday, index 1→5 means the
-%  generator naturally fills mornings before afternoons,
-%  producing compact schedules without extra heuristics.
+%  generator naturally fills mornings before afternoons.
+%
+%  Work-list ordering places the most constrained sessions first:
+%  each work_item(C,G) is keyed by the number of rooms satisfying
+%  both equipment and capacity. Labs and large groups therefore
+%  get scheduled before flexible lectures, causing impossible
+%  branches to fail earlier.
 %
 %  Session repetition:
 %    A course with SessionsPerWeek = 2 means that the same
@@ -100,7 +105,8 @@ build_work_list(WorkList) :-
             course(C, _Name, _Dept, _Year, Spw, _Type, _Eq, _Prof)
         ),
         RawItems),
-    expand_sessions(RawItems, WorkList).
+    expand_sessions(RawItems, Expanded),
+    order_work_list(Expanded, WorkList).
 
 % expand_sessions(+RawItems, -WorkList)
 %  Repeats each wi(C,G,N) N times as work_item(C,G).
@@ -117,6 +123,28 @@ replicate(N, E, [E|Rest]) :-
     N > 0,
     N1 is N - 1,
     replicate(N1, E, Rest).
+
+% order_work_list(+Expanded, -Ordered)
+%  Hardest sessions first: fewer compatible rooms means a lower key.
+%  keysort/2 preserves duplicate keys, so repeated weekly sessions are
+%  not collapsed.
+order_work_list(Expanded, Ordered) :-
+    findall(Key-work_item(C, G),
+        (   member(work_item(C, G), Expanded),
+            work_item_key(work_item(C, G), Key)
+        ),
+        Keyed),
+    keysort(Keyed, Sorted),
+    findall(Item, member(_-Item, Sorted), Ordered).
+
+work_item_key(work_item(C, G), Count-C-G) :-
+    findall(R,
+        (   room(R, _Building, _Floor, _Cap, _Equip, _ERate),
+            equipment_satisfied(C, R),
+            capacity_satisfied(C, G, R)
+        ),
+        Rooms),
+    length(Rooms, Count).
 
 % ============================================================
 %  MAIN ASSIGNMENT LOOP

@@ -94,7 +94,9 @@ scenario_depts(engineering, [gl, rt, imi, ch, bio]).
 scenario_depts(full_campus, [mpi, iia, cba, gl, rt, imi, ch, bio]).
 
 % active_years(?Scenario, ?Years)
-%  'prep' covers MPI/IIA/CBA prep years 1–2.
+%  'prep' is the abstract course year used by MPI/IIA/CBA
+%  prep-stream courses. Prep groups are stored more precisely
+%  as prep1/prep2, so scenario_groups/1 maps prep -> prep1/prep2.
 scenario_years(demo,        [3]).
 scenario_years(gl3_only,    [2,3,4,5]).
 scenario_years(engineering, [2,3,4,5]).
@@ -125,6 +127,16 @@ scenario_courses(Courses) :-
         ),
         Courses).
 
+% group_year_selected(+GroupYear, +ScenarioYears)
+%   Bridges the data model vocabulary: prep-stream courses use
+%   'prep', while prep-stream groups use concrete years prep1/prep2.
+group_year_selected(prep1, Years) :-
+    member(prep, Years), !.
+group_year_selected(prep2, Years) :-
+    member(prep, Years), !.
+group_year_selected(Year, Years) :-
+    member(Year, Years).
+
 % ============================================================
 %  scenario_groups(-GroupIDs)
 %  Returns the group IDs that belong to the active scenario.
@@ -135,6 +147,6 @@ scenario_groups(Groups) :-
     findall(GID,
         (   groups:group(GID, Dept, Year, _Enroll),
             member(Dept, Depts),
-            member(Year, Years)
+            group_year_selected(Year, Years)
         ),
         Groups).

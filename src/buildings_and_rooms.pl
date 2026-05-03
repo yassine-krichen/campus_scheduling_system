@@ -81,10 +81,10 @@ room(auditorium, insat_amphi_wing, rdc, 400, auditorium, 15.0).
 %  Layout:
 %    101–135: standard lecture rooms (projector_board, cap ~35)
 %    136–145: CS labs (cs_lab, cap 30)
-%    146–150: Physics labs (physics_lab, cap 24)
-%    151–153: Chemistry labs (chemistry_lab, cap 24)
-%    154–156: Biology labs (biology_lab, cap 24)
-%    157–158: Electronics labs (electronics_lab, cap 24)
+%    146–150: Physics labs (physics_lab, cap 30)
+%    151–153: Chemistry labs (chemistry_lab, cap 30)
+%    154–156: Biology labs (biology_lab, cap 30)
+%    157–158: Electronics labs (electronics_lab, cap 30)
 %    159–160: Language labs (language_lab, cap 30)
 %
 %  Energy per room type (kW/hr):
@@ -146,26 +146,26 @@ room(r143, insat_f1_wing, f1, 30, cs_lab, 5.5).
 room(r144, insat_f1_wing, f1, 30, cs_lab, 5.5).
 room(r145, insat_f1_wing, f1, 30, cs_lab, 5.5).
 
-% Physics labs 146–150 (24 seats each)
-room(r146, insat_f1_wing, f1, 24, physics_lab, 4.5).
-room(r147, insat_f1_wing, f1, 24, physics_lab, 4.5).
-room(r148, insat_f1_wing, f1, 24, physics_lab, 4.5).
-room(r149, insat_f1_wing, f1, 24, physics_lab, 4.5).
-room(r150, insat_f1_wing, f1, 24, physics_lab, 4.5).
+% Physics labs 146–150 (30 seats each)
+room(r146, insat_f1_wing, f1, 30, physics_lab, 4.5).
+room(r147, insat_f1_wing, f1, 30, physics_lab, 4.5).
+room(r148, insat_f1_wing, f1, 30, physics_lab, 4.5).
+room(r149, insat_f1_wing, f1, 30, physics_lab, 4.5).
+room(r150, insat_f1_wing, f1, 30, physics_lab, 4.5).
 
 % Chemistry labs 151–153
-room(r151, insat_f1_wing, f1, 24, chemistry_lab, 6.5).
-room(r152, insat_f1_wing, f1, 24, chemistry_lab, 6.5).
-room(r153, insat_f1_wing, f1, 24, chemistry_lab, 6.5).
+room(r151, insat_f1_wing, f1, 30, chemistry_lab, 6.5).
+room(r152, insat_f1_wing, f1, 30, chemistry_lab, 6.5).
+room(r153, insat_f1_wing, f1, 30, chemistry_lab, 6.5).
 
 % Biology labs 154–156
-room(r154, insat_f1_wing, f1, 24, biology_lab, 4.0).
-room(r155, insat_f1_wing, f1, 24, biology_lab, 4.0).
-room(r156, insat_f1_wing, f1, 24, biology_lab, 4.0).
+room(r154, insat_f1_wing, f1, 30, biology_lab, 4.0).
+room(r155, insat_f1_wing, f1, 30, biology_lab, 4.0).
+room(r156, insat_f1_wing, f1, 30, biology_lab, 4.0).
 
 % Electronics labs 157–158
-room(r157, insat_f1_wing, f1, 24, electronics_lab, 4.5).
-room(r158, insat_f1_wing, f1, 24, electronics_lab, 4.5).
+room(r157, insat_f1_wing, f1, 30, electronics_lab, 4.5).
+room(r158, insat_f1_wing, f1, 30, electronics_lab, 4.5).
 
 % Language labs 159–160
 room(r159, insat_f1_wing, f1, 30, language_lab, 3.5).
@@ -232,26 +232,26 @@ room(r243, insat_f2_wing, f2, 30, cs_lab, 5.5).
 room(r244, insat_f2_wing, f2, 30, cs_lab, 5.5).
 room(r245, insat_f2_wing, f2, 30, cs_lab, 5.5).
 
-% Physics labs 246–250
-room(r246, insat_f2_wing, f2, 24, physics_lab, 4.5).
-room(r247, insat_f2_wing, f2, 24, physics_lab, 4.5).
-room(r248, insat_f2_wing, f2, 24, physics_lab, 4.5).
-room(r249, insat_f2_wing, f2, 24, physics_lab, 4.5).
-room(r250, insat_f2_wing, f2, 24, physics_lab, 4.5).
+% Physics labs 246–250 (30 seats each)
+room(r246, insat_f2_wing, f2, 30, physics_lab, 4.5).
+room(r247, insat_f2_wing, f2, 30, physics_lab, 4.5).
+room(r248, insat_f2_wing, f2, 30, physics_lab, 4.5).
+room(r249, insat_f2_wing, f2, 30, physics_lab, 4.5).
+room(r250, insat_f2_wing, f2, 30, physics_lab, 4.5).
 
 % Chemistry labs 251–253
-room(r251, insat_f2_wing, f2, 24, chemistry_lab, 6.5).
-room(r252, insat_f2_wing, f2, 24, chemistry_lab, 6.5).
-room(r253, insat_f2_wing, f2, 24, chemistry_lab, 6.5).
+room(r251, insat_f2_wing, f2, 30, chemistry_lab, 6.5).
+room(r252, insat_f2_wing, f2, 30, chemistry_lab, 6.5).
+room(r253, insat_f2_wing, f2, 30, chemistry_lab, 6.5).
 
 % Biology labs 254–256
-room(r254, insat_f2_wing, f2, 24, biology_lab, 4.0).
-room(r255, insat_f2_wing, f2, 24, biology_lab, 4.0).
-room(r256, insat_f2_wing, f2, 24, biology_lab, 4.0).
+room(r254, insat_f2_wing, f2, 30, biology_lab, 4.0).
+room(r255, insat_f2_wing, f2, 30, biology_lab, 4.0).
+room(r256, insat_f2_wing, f2, 30, biology_lab, 4.0).
 
 % Electronics labs 257–258
-room(r257, insat_f2_wing, f2, 24, electronics_lab, 4.5).
-room(r258, insat_f2_wing, f2, 24, electronics_lab, 4.5).
+room(r257, insat_f2_wing, f2, 30, electronics_lab, 4.5).
+room(r258, insat_f2_wing, f2, 30, electronics_lab, 4.5).
 
 % Language labs 259–260
 room(r259, insat_f2_wing, f2, 30, language_lab, 3.5).
