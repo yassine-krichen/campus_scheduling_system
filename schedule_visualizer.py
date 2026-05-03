@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 Schedule Visualizer for INSAT Campus Scheduling System
 Provides GUI and terminal-based visualization of generated schedules
@@ -9,8 +10,13 @@ import sys
 from pathlib import Path
 from dataclasses import dataclass
 from typing import List, Dict, Tuple, Optional
-import tkinter as tk
-from tkinter import ttk, messagebox
+try:
+    import tkinter as tk
+    from tkinter import ttk, messagebox
+except ModuleNotFoundError:
+    tk = None
+    ttk = None
+    messagebox = None
 import re
 
 
@@ -99,10 +105,11 @@ class PrologInterface:
         """Generate a schedule from Prolog"""
         try:
             print("[DEBUG] Starting schedule generation...")
-            # Use run_scheduler which outputs schedule to stdout (same as schedule_viewer.py)
+            # Query the raw schedule term. This is more reliable than parsing
+            # run_scheduler/0's human-readable table output.
             cmd = [
-                'swipl', '-q', '-f', str(self.main_pl),
-                '-t', 'run_scheduler, halt'
+                'swipl', '-q', '-s', str(self.main_pl),
+                '-g', 'generate_schedule(S), write(S), halt.'
             ]
             print("[DEBUG] Command: {}".format(' '.join(cmd)))
             
@@ -402,6 +409,11 @@ class ScheduleGUI:
 def main():
     print("[DEBUG] ===== SCHEDULE VISUALIZER STARTED =====")
     try:
+        if tk is None:
+            print("ERROR: Tkinter is not installed with this Python distribution.")
+            print("Use 'python schedule_viewer.py' for the terminal viewer, or reinstall Python with Tcl/Tk support.")
+            sys.exit(1)
+
         project_root = Path(__file__).parent
         print("[DEBUG] Project root: {}".format(project_root))
         

@@ -10,6 +10,11 @@ import sys
 import json
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 PROJECT_ROOT = Path(__file__).parent
 MAIN_PL = PROJECT_ROOT / "main.pl"
 
@@ -141,7 +146,7 @@ def test_constraints():
     query = """
     build_work_list(WL), 
     WL = [FirstItem|_],
-    FirstItem = work(Course, Group),
+    FirstItem = work_item(Course, Group),
     format('First work item: Course ~w, Group ~w~n', [Course, Group])
     """
     

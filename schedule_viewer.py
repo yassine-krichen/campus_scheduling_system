@@ -90,12 +90,13 @@ class TerminalScheduleViewer:
         self.assignments: List[Assignment] = []
     
     def generate_schedule(self) -> bool:
-        """Generate schedule from Prolog using run_scheduler"""
+        """Generate schedule from Prolog using the raw assign/4 output"""
         try:
-            # Call run_scheduler which displays schedule to stdout
+            # Query raw assign/4 terms instead of parsing run_scheduler/0's
+            # human-readable table output.
             cmd = [
-                'swipl', '-q', '-f', str(self.project_root / "main.pl"),
-                '-t', 'run_scheduler, halt'
+                'swipl', '-q', '-s', str(self.project_root / "main.pl"),
+                '-g', 'generate_schedule(S), write(S), halt.'
             ]
             
             result = subprocess.run(

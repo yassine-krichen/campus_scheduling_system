@@ -1,0 +1,236 @@
+Intelligent Campus Scheduling
+A Prolog-Based Declarative Decision Engine for INSAT University Resource Management
+Logic Programming Project - Spring 2026
+INSAT GL3
+Yassine Krichen
+Seifeddine Amiri
+
+System Architecture
+Building a structured reasoning framework for complex academic constraints
+
+Knowledge Base
+Temporal facts, spatial data, course data, student groups, and instructor availability are defined as Prolog facts.
+
+Constraint Engine
+Enforces hard feasibility: no room double-booking, no group double-booking, room capacity verification, equipment compatibility, and instructor availability checks.
+
+Energy Module
+Calculates assignment-level and building-level energy consumption, then enforces daily building thresholds during recursive generation.
+
+Optimizer
+Ranks candidate schedules with a composite score based on total energy, daily load balance, and room allocation fairness.
+
+Modular Logic Architecture
+
+Entity | Predicate | Key Attributes
+Course | course/8 | Department, Year, Sessions/Week, Type, Required Equipment, InstructorID
+Room | room/6 | Building, Floor, Capacity, EquipmentType, EnergyCost_kW
+Building | building/3 | Name, DailyEnergyThreshold_kWh
+Time Slot | time_slot/6 | slot(Day, Index), Day, Start Time, End Time
+Assignment | assign/4 | CourseID, GroupID, RoomID, slot(Day, Index)
+
+Declarative Data Modeling
+
+Courses
+Represented by course/8 facts with department, year, weekly session count, session type, equipment requirement, and instructor.
+
+Rooms and Buildings
+Represented by room/6 and building/3 facts, including capacity, equipment, energy rate, and daily building threshold.
+
+Student Groups
+Represented by group/4 facts with department, year, and enrollment.
+
+Assignments
+Every scheduled session is represented as assign(CourseID, GroupID, RoomID, slot(Day, Index)).
+
+Scenario Configuration
+The system supports demo, gl3_only, engineering, and full_campus scenarios through environment variables.
+
+Latest Data Integrity Fix
+Full-campus prep integration is handled by mapping abstract course year prep to group years prep1 and prep2 during scenario group selection.
+
+Hard Feasibility Constraints
+
+Temporal Integrity
+No student group can attend two sessions in the same time slot.
+
+Room Exclusivity
+No room can host two sessions in the same time slot.
+
+Spatial Capacity
+RoomCapacity >= GroupEnrollment is verified for every individual assignment.
+
+Resource Alignment
+Room equipment must satisfy course requirements, including laboratories, amphitheaters, projectors, and auditorium needs.
+
+Personnel Availability
+Instructor unavailability periods are checked using a closed-world availability model.
+
+Energy-Aware Reasoning
+
+Every assignment contributes to the daily load of the building containing its room.
+
+Energy per assignment:
+Energy_kWh = RoomHourlyRate_kW x 1.5 hours
+
+Main predicate:
+building_energy_ok(Day, Assignments, Building)
+
+Unlike a post-hoc validator, the energy constraint is checked during recursive generation. If adding a session would exceed a daily building threshold, the branch fails immediately.
+
+Recursive Schedule Generation
+
+The generator builds a work list from course_session/2 facts and expands each course/group pair by SessionsPerWeek.
+
+It then recursively assigns each work item to a room and slot:
+1. Choose a time slot.
+2. Choose a room.
+3. Build assign(CourseID, GroupID, RoomID, slot(Day, Index)).
+4. Check hard constraints.
+5. Check energy threshold.
+6. Continue recursively or backtrack.
+
+Fail-First Search Heuristic
+
+The latest generator orders work items by difficulty.
+
+Sessions with fewer compatible rooms are scheduled first:
+- laboratories before flexible lectures;
+- high-capacity requirements before easy assignments;
+- infeasible branches fail earlier.
+
+Search Complexity and Logic Pruning
+
+Without constraints:
+130 rooms x 30 slots = 3900 possible choices per session.
+
+With early filtering:
+Equipment and capacity checks are applied before scanning the partial schedule.
+
+Example:
+A physics lab session can only use 10 physics labs, reducing the initial branching factor from 3900 to about 300 before conflict and energy checks.
+
+Result:
+The system reduces the practical search space by over 90% for constrained sessions.
+
+Multi-Criteria Evaluation
+
+The system ranks valid schedules using:
+Score = TotalEnergy + W1 x DailyImbalance + W2 x RoomFairnessPenalty
+
+TotalEnergy
+Total weekly campus energy consumption.
+
+DailyImbalance
+Difference between maximum and minimum active-day energy totals.
+
+RoomFairnessPenalty
+Variance of room usage counts, penalizing overuse of a small set of rooms.
+
+Fairness vs Energy Trade-Off
+
+Energy efficiency tends to compact sessions into fewer buildings and lower-energy rooms.
+
+Fairness tends to distribute sessions across more rooms to reduce wear and concentration.
+
+Weighted scoring allows the system to balance these competing goals.
+
+System Execution Scenarios
+
+Demo Scenario
+Scope: GL Year 3 only.
+Work items: 32.
+Generated assignments: 32.
+Weekly energy: 285.00 kWh.
+Best for live demonstration.
+
+GL Scenario
+Scope: GL years 2 to 5.
+Work items: 90.
+Generated assignments: 90.
+Weekly energy: 798.00 kWh.
+
+Engineering Scenario
+Scope: GL, RT, IMI, CH, and BIO engineering streams.
+Work items: 278.
+Generated assignments: 278.
+Weekly energy with energy checks: 2113.50 kWh.
+
+Full Campus Scenario
+Scope: complete knowledge base.
+Courses: 146.
+Groups: 79.
+Work items: 796.
+Generated assignments: 796.
+Weekly energy with energy checks: 5046.75 kWh.
+
+Experimental Validation
+
+Integration tests verify:
+- knowledge bases load correctly;
+- every course/group session has at least one feasible room;
+- full-campus prep selection includes prep1 and prep2 groups;
+- demo schedule generation succeeds;
+- generated schedules have no room or group conflicts;
+- energy threshold violations are rejected.
+
+Energy Experiment
+
+Engineering:
+Energy enabled: 2113.50 kWh.
+Energy disabled: 2149.50 kWh.
+
+Full Campus:
+Energy enabled: 5046.75 kWh.
+Energy disabled: 5100.75 kWh.
+
+The energy-aware constraint changes the generated schedule and reduces observed weekly energy while preserving feasibility.
+
+Hybrid Visualization Pipeline
+
+SWI-Prolog performs the reasoning:
+- knowledge representation;
+- recursive generation;
+- hard constraints;
+- energy checks;
+- optimization.
+
+Python provides human-facing visualization:
+- terminal schedule viewer;
+- views by room, group, and day;
+- timetable grid;
+- optional Tkinter graphical viewer.
+
+Viewer Implementation
+
+The Python tools query raw Prolog assignment terms:
+generate_schedule(S), write(S)
+
+This avoids parsing fragile human-readable table output.
+
+Development Roadmap
+
+Milestone 1
+Knowledge modeling and hard constraints.
+
+Milestone 2
+Energy modeling and arithmetic reasoning.
+
+Milestone 3
+Optimization and fairness metrics.
+
+Final Integration
+Runtime scenarios, Python visualization, integration tests, and LaTeX report.
+
+Conclusion
+
+This project demonstrates how logic programming can solve a realistic constrained scheduling problem.
+
+The final system combines:
+- modular knowledge representation;
+- recursive declarative search;
+- early-failure constraint pruning;
+- energy-aware reasoning;
+- bounded optimization;
+- human-readable visualization.
+

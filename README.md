@@ -120,6 +120,8 @@ See `.env.example` for a ready-to-use configuration template.
 ### Prerequisites
 
 - [SWI-Prolog](https://www.swi-prolog.org/Download.html) ≥ 9.x installed and `swipl` in PATH.
+- Python 3.7+ for the terminal viewer.
+- Tkinter for the GUI viewer. On Windows this is normally included with the official Python installer, but some minimal Python distributions omit it.
 
 ### Quick Start (demo scenario, first valid schedule)
 
@@ -154,6 +156,38 @@ SCHED_SCENARIO=gl3_only SCHED_LIMIT=3 SCHED_OPT=energy swipl main.pl
 ```powershell
 swipl -g run_scheduler -t halt main.pl
 ```
+
+### Manual Validation Checklist
+
+Run these commands from the project root before a demo or defense:
+
+```powershell
+# 1. Check SWI-Prolog is installed
+swipl --version
+
+# 2. Run Prolog integration tests
+swipl -q -s tests\sanity_test.pl -g run_tests -t halt
+
+# 3. Run the Python/Prolog test suite
+python test_scheduler.py
+
+# 4. Verify raw schedule generation used by the viewers
+swipl -q -s main.pl -g "generate_schedule(S), length(S,N), format('Assignments: ~w~n',[N]), halt."
+
+# 5. Verify full-campus generation
+$env:SCHED_SCENARIO = "full_campus"
+$env:SCHED_ENERGY = "true"
+swipl -q -s main.pl -g "build_work_list(W), length(W,WL), generate_n_schedules(1,S), length(S,F), format('Work items: ~w, schedules: ~w~n',[WL,F]), halt."
+
+# 6. Verify the terminal viewer parses assignments
+python schedule_viewer.py
+```
+
+Expected results:
+- The Prolog integration tests print `All sanity tests passed!`.
+- The demo raw schedule contains 32 assignments.
+- The full-campus scenario reports 796 work items and finds 1 bounded schedule.
+- `python schedule_viewer.py` prints `SUCCESS: Generated schedule with 32 assignments`.
 
 ### Interactive Queries
 
@@ -209,6 +243,14 @@ Or from terminal viewer: `python schedule_viewer.py --gui`
 
 Click buttons to switch between Room/Group/Day views and Summary.
 
+If this prints `Tkinter is not installed with this Python distribution`, use the terminal viewer:
+
+```bash
+python schedule_viewer.py
+```
+
+or reinstall Python from the official installer with Tcl/Tk support enabled.
+
 ### Example Usage
 
 **Quick 3-step visualization:**
@@ -229,6 +271,16 @@ echo "1" | python schedule_viewer.py > my_schedule.txt 2>&1
 ```
 
 For detailed documentation, see: **QUICKSTART_VISUALIZATION.md** and **VISUALIZATION_README.md**
+
+### Viewer Implementation Note
+
+The Python viewers query Prolog using the raw term format:
+
+```powershell
+swipl -q -s main.pl -g "generate_schedule(S), write(S), halt."
+```
+
+They parse `assign(CourseID, GroupID, RoomID, slot(Day, Index))` terms directly. This is intentionally more stable than parsing the human-readable `run_scheduler/0` table output.
 
 ---
 
@@ -289,13 +341,13 @@ The generator applies constraints in the following order for each candidate `ass
 5. **`group_free_at/3`** — linear scan of partial list
 
 **Theoretical branching factor** without constraints: 130 rooms × 30 slots = 3,900 per work item.
-With equipment filtering active: typically 3–20 compatible rooms per course type, reducing the factor by 99%+.
+With equipment filtering active, constrained sessions such as labs often fall to 3–20 compatible rooms before conflict and energy checks.
 
 ---
 
 ## Known Limitations and Realistic Scope
 
-- **Full-campus exhaustive optimisation is not the default execution path.** The full knowledge base contains >600 `course_session` pairs, each requiring 1–2 weekly sessions. Exhaustive search over all of them simultaneously is computationally infeasible in pure Prolog without constraint solvers (CLP). The `candidate_limit` setting (default 1) means the system returns the first valid schedule found.
+- **Full-campus exhaustive optimisation is not the default execution path.** The full knowledge base produces 796 session work items. The system can generate a bounded full-campus schedule, but exhaustive search over all valid schedules remains computationally infeasible in pure Prolog without constraint solvers (CLP). The `candidate_limit` setting (default 1) means the system returns the first valid schedule found.
 - **The `demo` scenario (GL Year 3 only)** is the recommended setting for the defence. It produces a valid schedule in sub-second time.
 - **Energy constraints** can be disabled via `SCHED_ENERGY=false` to speed up generation if building thresholds are too restrictive for a given scenario.
 - **No HTTP interface** — this is a terminal-first deliverable as per project scope.
