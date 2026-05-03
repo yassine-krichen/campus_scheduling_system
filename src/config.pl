@@ -80,6 +80,9 @@ setting(optimization_mode, V) :-
 setting(enable_energy_constraints, V) :-
     env_setting('SCHED_ENERGY', true, V).
 
+setting(kb_source, V) :-
+    env_setting('SCHED_KB', legacy, V).
+
 % ============================================================
 %  SCENARIO DEFINITIONS
 %  Each scenario specifies which departments and years to
@@ -118,14 +121,28 @@ active_years(Years) :-
 %  scenario, using the department and year filters.
 % ============================================================
 scenario_courses(Courses) :-
+    setting(kb_source, Source),
     active_departments(Depts),
     active_years(Years),
     findall(CID,
         (   courses:course(CID, _Name, Dept, Year, _Spw, _Type, _Eq, _Prof),
+            course_source_selected(Source, CID),
             member(Dept, Depts),
             member(Year, Years)
         ),
-        Courses).
+        RawCourses),
+    list_to_set(RawCourses, Courses).
+
+csv_generated_course(CID) :-
+    courses:course(CID, _Name, _Dept, _Year, _Spw, _Type, _Eq, Prof),
+    atom(Prof),
+    sub_atom(Prof, 0, 9, _, csv_prof_).
+
+course_source_selected(csv, CID) :-
+    csv_generated_course(CID).
+course_source_selected(legacy, CID) :-
+    \+ csv_generated_course(CID).
+course_source_selected(both, _CID).
 
 % group_year_selected(+GroupYear, +ScenarioYears)
 %   Bridges the data model vocabulary: prep-stream courses use
@@ -149,4 +166,5 @@ scenario_groups(Groups) :-
             member(Dept, Depts),
             group_year_selected(Year, Years)
         ),
-        Groups).
+        RawGroups),
+    list_to_set(RawGroups, Groups).

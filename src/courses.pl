@@ -33,6 +33,9 @@
 
 :- module(courses, [course/8, course_session/2]).
 
+:- discontiguous course/8.
+:- discontiguous course_session/2.
+
 % ============================================================
 % ============================================================
 %  SECTION A: ALL course/8 FACTS
@@ -527,3 +530,10 @@ course_session(bio4_bioinfo_tp, bio4_a).  course_session(bio4_bioinfo_tp, bio4_b
 course_session(bio4_env_lec, bio4_a).     course_session(bio4_env_lec, bio4_b).
 
 course_session(bio5_pfe_suivi, bio5_a). course_session(bio5_pfe_suivi, bio5_b).
+
+% ============================================================
+%  CSV-GENERATED COURSE EXTENSIONS
+%  Regenerate with: python tools/generate_csv_kb.py
+% ============================================================
+
+:- include('csv_courses_generated.pl').

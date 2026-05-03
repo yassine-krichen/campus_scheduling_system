@@ -101,6 +101,17 @@ def clean_text(value: str) -> str:
     return re.sub(r"\s+", " ", ascii_value).strip()
 
 
+def repair_text(value: str) -> str:
+    if not isinstance(value, str):
+        return value
+    if "Ã" not in value and "Â" not in value:
+        return value
+    try:
+        return value.encode("latin1").decode("utf-8")
+    except UnicodeError:
+        return value
+
+
 def parse_float(value: str) -> float:
     try:
         return float(str(value).replace(",", "."))
@@ -155,8 +166,8 @@ def load_subject_catalog() -> List[SubjectInfo]:
     with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         for row in reader:
-            class_label = (row.get("Class") or "").strip()
-            subject = (row.get("Subject") or "").strip()
+            class_label = repair_text(row.get("Class") or "").strip()
+            subject = repair_text(row.get("Subject") or "").strip()
             if not class_label or not subject:
                 continue
             subjects.append(
@@ -273,12 +284,15 @@ class PrologInterface:
     def generate_schedule(
         self,
         scenario: Optional[str] = None,
+        kb_source: Optional[str] = None,
         limit: Optional[int] = None,
         timeout: Optional[int] = None,
     ) -> List[Assignment]:
         env = os.environ.copy()
         if scenario:
             env["SCHED_SCENARIO"] = scenario
+        if kb_source:
+            env["SCHED_KB"] = kb_source
         if limit is not None:
             env["SCHED_LIMIT"] = str(limit)
 
@@ -409,7 +423,7 @@ class ScheduleVisualizer:
             grouped.setdefault(item.day, {}).setdefault(str(item.slot), []).append(asdict(item))
         return grouped
 
-    def payload(self, scenario: str, elapsed_ms: int) -> Dict:
+    def payload(self, scenario: str, kb_source: str, elapsed_ms: int) -> Dict:
         rooms = sorted({item.room_id for item in self.assignments})
         groups = sorted({item.group_id for item in self.assignments})
         courses = sorted({item.subject_name or item.course_id for item in self.assignments})
@@ -418,6 +432,7 @@ class ScheduleVisualizer:
             class_catalog.setdefault(subject.class_label, []).append(asdict(subject))
         return {
             "scenario": scenario,
+            "kb_source": kb_source,
             "elapsed_ms": elapsed_ms,
             "csv_loaded": bool(self.subject_catalog),
             "csv_path": str(resolve_csv_path() or ""),
@@ -447,8 +462,8 @@ app = FastAPI(title="Campus Schedule Visualizer")
 _CACHE: Dict[str, Dict] = {}
 
 
-def cache_key(scenario: str, limit: int, timeout: int) -> str:
-    return "{}:{}:{}".format(scenario, limit, timeout)
+def cache_key(scenario: str, kb_source: str, limit: int, timeout: int) -> str:
+    return "{}:{}:{}:{}".format(scenario, kb_source, limit, timeout)
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -459,16 +474,20 @@ def index():
 @app.get("/api/schedule")
 def api_schedule(
     scenario: Optional[str] = Query(default=None),
+    kb_source: Optional[str] = Query(default=None),
     limit: int = Query(default=1, ge=1, le=20),
     timeout: Optional[int] = Query(default=None, ge=1, le=600),
     refresh: bool = Query(default=False),
 ):
     scenario = scenario or os.environ.get("SCHED_SCENARIO", "demo")
+    kb_source = kb_source or os.environ.get("SCHED_KB", "legacy")
     timeout = timeout or get_prolog_timeout()
     if scenario not in SCENARIOS:
         raise HTTPException(status_code=400, detail="Unknown scenario: {}".format(scenario))
+    if kb_source not in {"legacy", "csv", "both"}:
+        raise HTTPException(status_code=400, detail="Unknown knowledge-base source: {}".format(kb_source))
 
-    key = cache_key(scenario, limit, timeout)
+    key = cache_key(scenario, kb_source, limit, timeout)
     if not refresh and key in _CACHE:
         return _CACHE[key]
 
@@ -476,6 +495,7 @@ def api_schedule(
     try:
         assignments = PrologInterface(PROJECT_ROOT).generate_schedule(
             scenario=scenario,
+            kb_source=kb_source,
             limit=limit,
             timeout=timeout,
         )
@@ -483,7 +503,11 @@ def api_schedule(
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
     elapsed_ms = int((time.perf_counter() - started) * 1000)
-    payload = ScheduleVisualizer(assignments).payload(scenario=scenario, elapsed_ms=elapsed_ms)
+    payload = ScheduleVisualizer(assignments).payload(
+        scenario=scenario,
+        kb_source=kb_source,
+        elapsed_ms=elapsed_ms,
+    )
     _CACHE[key] = payload
     return payload
 
@@ -1059,6 +1083,14 @@ HTML_PAGE = r"""<!doctype html>
             </select>
           </div>
           <div class="field">
+            <label for="kbSource">Knowledge Base</label>
+            <select id="kbSource">
+              <option value="legacy">legacy</option>
+              <option value="csv">csv</option>
+              <option value="both">both</option>
+            </select>
+          </div>
+          <div class="field">
             <label for="timeout">Timeout</label>
             <input id="timeout" type="number" min="1" max="600" value="120">
           </div>
@@ -1118,6 +1150,7 @@ HTML_PAGE = r"""<!doctype html>
 
     const els = {
       scenario: document.getElementById("scenario"),
+      kbSource: document.getElementById("kbSource"),
       timeout: document.getElementById("timeout"),
       generate: document.getElementById("generate"),
       refresh: document.getElementById("refresh"),
@@ -1317,6 +1350,7 @@ HTML_PAGE = r"""<!doctype html>
       try {
         const params = new URLSearchParams({
           scenario: els.scenario.value,
+          kb_source: els.kbSource.value,
           limit: "1",
           timeout: els.timeout.value || "120",
           refresh: String(refresh)
@@ -1327,10 +1361,10 @@ HTML_PAGE = r"""<!doctype html>
 
         state.data = data;
         state.filtered = data.assignments;
-        els.subtitle.textContent = `${titleCase(data.scenario)} generated ${data.summary.total_assignments} assignments. ${data.csv_loaded ? "CSV class catalog loaded." : "CSV class catalog not found."}`;
-        els.sideScenario.textContent = `Scenario: ${data.scenario}`;
+        els.subtitle.textContent = `${titleCase(data.scenario)} / ${data.kb_source} generated ${data.summary.total_assignments} assignments. ${data.csv_loaded ? "CSV class catalog loaded." : "CSV class catalog not found."}`;
+        els.sideScenario.textContent = `Scenario: ${data.scenario} / ${data.kb_source}`;
         els.sideRuntime.textContent = `Runtime: ${(data.elapsed_ms / 1000).toFixed(1)}s`;
-        els.signalScenario.textContent = data.scenario;
+        els.signalScenario.textContent = `${data.scenario} / ${data.kb_source}`;
         els.signalRuntime.textContent = `${(data.elapsed_ms / 1000).toFixed(1)}s`;
         els.signalSlot.textContent = data.summary.max_slot;
         renderStats();

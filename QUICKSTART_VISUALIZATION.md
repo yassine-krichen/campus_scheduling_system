@@ -89,6 +89,19 @@ $env:SCHED_CSV_PATH="D:\path\to\INSAT_Class_Schedules.csv"
 python schedule_visualizer.py
 ```
 
+To regenerate the Prolog knowledge base from the CSV:
+
+```bash
+python tools/generate_csv_kb.py
+```
+
+To schedule using CSV-generated facts:
+
+```bash
+$env:SCHED_KB="csv"
+python schedule_visualizer.py
+```
+
 ## Troubleshooting
 
 If FastAPI or Uvicorn is missing:

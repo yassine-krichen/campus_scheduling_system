@@ -56,6 +56,7 @@ The scheduler reads these environment variables:
 
 ```bash
 $env:SCHED_SCENARIO="gl3_only"
+$env:SCHED_KB="legacy"
 $env:SCHED_LIMIT="1"
 $env:SCHED_TIMEOUT="120"
 python schedule_visualizer.py
@@ -82,6 +83,12 @@ Expected columns:
 Class,Subject,Total_Hours,Course_Hours,TD_Hours,TP_Hours
 ```
 
+To regenerate the Prolog knowledge-base facts from the CSV:
+
+```bash
+python tools/generate_csv_kb.py
+```
+
 Available scenarios:
 
 - `demo`
@@ -89,10 +96,24 @@ Available scenarios:
 - `engineering`
 - `full_campus`
 
+Knowledge-base sources:
+
+- `legacy`: hand-written Prolog facts
+- `csv`: facts generated from `data/INSAT_Class_Schedules.csv`
+- `both`: combined facts
+
+Run with the CSV-backed knowledge base:
+
+```bash
+$env:SCHED_KB="csv"
+python schedule_visualizer.py
+```
+
 For larger scenarios, increase the timeout:
 
 ```bash
 $env:SCHED_SCENARIO="full_campus"
+$env:SCHED_KB="legacy"
 $env:SCHED_TIMEOUT="180"
 python schedule_visualizer.py
 ```
@@ -102,13 +123,13 @@ python schedule_visualizer.py
 The web app exposes the generated schedule as JSON:
 
 ```text
-GET /api/schedule?scenario=gl3_only&limit=1&timeout=120
+GET /api/schedule?scenario=gl3_only&kb_source=csv&limit=1&timeout=120
 ```
 
 Use `refresh=true` to force regeneration instead of returning the cached result:
 
 ```text
-GET /api/schedule?scenario=gl3_only&limit=1&timeout=120&refresh=true
+GET /api/schedule?scenario=gl3_only&kb_source=csv&limit=1&timeout=120&refresh=true
 ```
 
 ## Troubleshooting

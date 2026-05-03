@@ -31,6 +31,8 @@
 
 :- module(instructors, [instructor/3, instructor_available/3]).
 
+:- discontiguous instructor/3.
+
 % ============================================================
 %  AVAILABILITY HELPER
 %  A professor is available on Day at SlotIndex
@@ -140,6 +142,13 @@ instructor(prof_lang_1, languages, english).
 instructor(prof_lang_2, languages, english).
 instructor(prof_lang_3, languages, french_communication).
 instructor(prof_lang_4, languages, arabic_humanities).
+
+% ============================================================
+%  CSV-GENERATED INSTRUCTOR EXTENSIONS
+%  Regenerate with: python tools/generate_csv_kb.py
+% ============================================================
+
+:- include('csv_instructors_generated.pl').
 
 % ============================================================
 % ============================================================

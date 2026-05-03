@@ -31,6 +31,8 @@
 
 :- module(groups, [group/4, group_size/2]).
 
+:- discontiguous group/4.
+
 % ============================================================
 %  MPI — 24 classes (prep, mixed physics/maths/CS)
 % ============================================================
@@ -102,6 +104,13 @@ group(bio2_a, bio, 2, 30). group(bio2_b, bio, 2, 30).
 group(bio3_a, bio, 3, 30). group(bio3_b, bio, 3, 30).
 group(bio4_a, bio, 4, 25). group(bio4_b, bio, 4, 25).
 group(bio5_a, bio, 5, 25). group(bio5_b, bio, 5, 25).
+
+% ============================================================
+%  CSV-GENERATED GROUP EXTENSIONS
+%  Regenerate with: python tools/generate_csv_kb.py
+% ============================================================
+
+:- include('csv_groups_generated.pl').
 
 % ============================================================
 %  Derived: group_size/2
