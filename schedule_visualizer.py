@@ -7,6 +7,7 @@ Provides GUI and terminal-based visualization of generated schedules
 
 import subprocess
 import sys
+import os
 from pathlib import Path
 from dataclasses import dataclass
 from typing import List, Dict, Tuple, Optional
@@ -18,6 +19,19 @@ except ModuleNotFoundError:
     ttk = None
     messagebox = None
 import re
+
+
+DEFAULT_PROLOG_TIMEOUT = 120
+
+
+def get_prolog_timeout() -> int:
+    """Return the Prolog subprocess timeout in seconds."""
+    raw_timeout = os.environ.get("SCHED_TIMEOUT", str(DEFAULT_PROLOG_TIMEOUT))
+    try:
+        timeout = int(raw_timeout)
+    except ValueError:
+        timeout = DEFAULT_PROLOG_TIMEOUT
+    return max(1, timeout)
 
 
 @dataclass
@@ -104,6 +118,7 @@ class PrologInterface:
     def generate_schedule(self) -> Optional[List[Assignment]]:
         """Generate a schedule from Prolog"""
         try:
+            timeout = get_prolog_timeout()
             print("[DEBUG] Starting schedule generation...")
             # Query the raw schedule term. This is more reliable than parsing
             # run_scheduler/0's human-readable table output.
@@ -117,7 +132,7 @@ class PrologInterface:
                 cmd,
                 capture_output=True,
                 text=True,
-                timeout=30,
+                timeout=timeout,
                 cwd=str(self.project_root)
             )
             
@@ -134,6 +149,10 @@ class PrologInterface:
             assignments = ScheduleParser.parse_assignments(result.stdout)
             print("[DEBUG] Parsed {} assignments".format(len(assignments)))
             return assignments
+        except subprocess.TimeoutExpired:
+            print("[DEBUG] ERROR generating schedule: Prolog timeout (>{} seconds)".format(get_prolog_timeout()))
+            print("Hint: full_campus can take longer; try setting SCHED_TIMEOUT=180.")
+            return None
         except Exception as e:
             print("[DEBUG] ERROR generating schedule: {}".format(str(e)))
             import traceback

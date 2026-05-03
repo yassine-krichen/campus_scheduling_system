@@ -6,10 +6,24 @@ Display generated schedules in the terminal with table formatting
 
 import subprocess
 import sys
+import os
 from pathlib import Path
 from typing import List, Dict, Optional
 import re
 from dataclasses import dataclass
+
+
+DEFAULT_PROLOG_TIMEOUT = 120
+
+
+def get_prolog_timeout() -> int:
+    """Return the Prolog subprocess timeout in seconds."""
+    raw_timeout = os.environ.get("SCHED_TIMEOUT", str(DEFAULT_PROLOG_TIMEOUT))
+    try:
+        timeout = int(raw_timeout)
+    except ValueError:
+        timeout = DEFAULT_PROLOG_TIMEOUT
+    return max(1, timeout)
 
 
 @dataclass
@@ -92,6 +106,7 @@ class TerminalScheduleViewer:
     def generate_schedule(self) -> bool:
         """Generate schedule from Prolog using the raw assign/4 output"""
         try:
+            timeout = get_prolog_timeout()
             # Query raw assign/4 terms instead of parsing run_scheduler/0's
             # human-readable table output.
             cmd = [
@@ -101,7 +116,7 @@ class TerminalScheduleViewer:
             
             result = subprocess.run(
                 cmd, capture_output=True, text=True,
-                timeout=30, cwd=str(self.project_root)
+                timeout=timeout, cwd=str(self.project_root)
             )
             
             if result.returncode != 0:
@@ -120,7 +135,8 @@ class TerminalScheduleViewer:
             self.assignments = ScheduleParser.parse_assignments(result.stdout)
             return len(self.assignments) > 0
         except subprocess.TimeoutExpired:
-            print("ERROR: Prolog timeout (>30 seconds)")
+            print("ERROR: Prolog timeout (>{} seconds)".format(get_prolog_timeout()))
+            print("Hint: full_campus can take longer; try setting SCHED_TIMEOUT=180.")
             return False
         except Exception as e:
             print("ERROR: {}".format(e))
