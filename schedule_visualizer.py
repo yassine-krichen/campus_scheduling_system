@@ -35,23 +35,55 @@ class ScheduleParser:
     @staticmethod
     def parse_assignments(prolog_output: str) -> List[Assignment]:
         """
-        Parse Prolog output containing assignments
-        Format: assign(course_id, group_id, room_id, slot(day, slot_num))
+        Parse Prolog output containing assignments.
+        Tries two formats:
+        1. Pipe-separated table format from display_schedule:
+           course_id | group_id | room_id | day slot number
+        2. Prolog assign/4 format: 
+           assign(course, group, room, slot(day, num))
         """
         assignments = []
         
-        # Find all assign(...) terms
-        pattern = r'assign\(([^,]+),\s*([^,]+),\s*([^,]+),\s*slot\(([^,]+),\s*(\d+)\)\)'
-        matches = re.findall(pattern, prolog_output)
+        # Try pipe-separated format first (from display_schedule)
+        lines = prolog_output.strip().split('\n')
+        for line in lines:
+            line = line.strip()
+            if not line or '|' not in line:
+                continue
+            
+            parts = [p.strip() for p in line.split('|')]
+            if len(parts) >= 4:
+                course_id = parts[0]
+                group_id = parts[1]
+                room_id = parts[2]
+                day_slot = parts[3]  # e.g., "tuesday slot 2"
+                
+                # Parse "day slot number" format
+                slot_match = re.search(r'(\w+)\s+slot\s+(\d+)', day_slot)
+                if slot_match:
+                    day = slot_match.group(1)
+                    slot = int(slot_match.group(2))
+                    assignments.append(Assignment(
+                        course_id=course_id,
+                        group_id=group_id,
+                        room_id=room_id,
+                        day=day,
+                        slot=slot
+                    ))
         
-        for course, group, room, day, slot in matches:
-            assignments.append(Assignment(
-                course_id=course.strip(),
-                group_id=group.strip(),
-                room_id=room.strip(),
-                day=day.strip(),
-                slot=int(slot)
-            ))
+        # If no assignments found, try assign() format
+        if not assignments:
+            pattern = r'assign\(([^,]+),\s*([^,]+),\s*([^,]+),\s*slot\(([^,]+),\s*(\d+)\)\)'
+            matches = re.findall(pattern, prolog_output)
+            
+            for course, group, room, day, slot in matches:
+                assignments.append(Assignment(
+                    course_id=course.strip(),
+                    group_id=group.strip(),
+                    room_id=room.strip(),
+                    day=day.strip(),
+                    slot=int(slot)
+                ))
         
         return assignments
 
@@ -66,10 +98,13 @@ class PrologInterface:
     def generate_schedule(self) -> Optional[List[Assignment]]:
         """Generate a schedule from Prolog"""
         try:
+            print("[DEBUG] Starting schedule generation...")
+            # Use run_scheduler which outputs schedule to stdout (same as schedule_viewer.py)
             cmd = [
                 'swipl', '-q', '-f', str(self.main_pl),
-                '-t', 'generate_schedule(S), format("~w", [S]), halt'
+                '-t', 'run_scheduler, halt'
             ]
+            print("[DEBUG] Command: {}".format(' '.join(cmd)))
             
             result = subprocess.run(
                 cmd,
@@ -79,12 +114,23 @@ class PrologInterface:
                 cwd=str(self.project_root)
             )
             
+            print("[DEBUG] Return code: {}".format(result.returncode))
+            print("[DEBUG] Output length: {}".format(len(result.stdout) if result.stdout else 0))
+            if result.stderr:
+                print("[DEBUG] Stderr: {}".format(result.stderr[:200]))
+            
             if result.returncode != 0:
+                print("[DEBUG] Prolog returned non-zero exit code")
                 return None
             
-            return ScheduleParser.parse_assignments(result.stdout)
+            print("[DEBUG] Parsing assignments...")
+            assignments = ScheduleParser.parse_assignments(result.stdout)
+            print("[DEBUG] Parsed {} assignments".format(len(assignments)))
+            return assignments
         except Exception as e:
-            print(f"Error generating schedule: {e}")
+            print("[DEBUG] ERROR generating schedule: {}".format(str(e)))
+            import traceback
+            traceback.print_exc()
             return None
     
     def get_scenario_data(self) -> Optional[Dict]:
@@ -117,8 +163,10 @@ class ScheduleVisualizer:
     """Main visualization engine"""
     
     def __init__(self, assignments: List[Assignment]):
+        print("[DEBUG] ScheduleVisualizer init with {} assignments".format(len(assignments)))
         self.assignments = assignments
         self.days_order = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+        print("[DEBUG] ScheduleVisualizer initialized successfully")
     
     def get_by_room(self) -> Dict[str, List[Assignment]]:
         """Group assignments by room"""
@@ -268,18 +316,23 @@ class ScheduleGUI:
     """Tkinter GUI for schedule visualization"""
     
     def __init__(self, root: tk.Tk, visualizer: ScheduleVisualizer):
+        print("[DEBUG] ScheduleGUI init starting...")
         self.root = root
         self.visualizer = visualizer
         self.root.title("Campus Schedule Visualizer")
         self.root.geometry("1200x700")
+        print("[DEBUG] Tkinter root configured")
         
         self._setup_ui()
+        print("[DEBUG] UI setup complete")
     
     def _setup_ui(self):
         """Setup the GUI elements"""
+        print("[DEBUG] _setup_ui starting...")
         # Top frame with buttons
         top_frame = ttk.Frame(self.root)
         top_frame.pack(side=tk.TOP, fill=tk.X, padx=10, pady=10)
+        print("[DEBUG] Top frame created")
         
         ttk.Button(
             top_frame, text="View by Room",
@@ -318,14 +371,18 @@ class ScheduleGUI:
         self.text_widget.config(yscrollcommand=scrollbar.set)
         
         # Show summary by default
+        print("[DEBUG] _setup_ui displaying summary...")
         self._show_summary()
+        print("[DEBUG] _setup_ui complete")
     
     def _show_text(self, text: str):
         """Display text in the text widget"""
+        print("[DEBUG] _show_text called with {} chars".format(len(text)))
         self.text_widget.config(state=tk.NORMAL)
         self.text_widget.delete(1.0, tk.END)
         self.text_widget.insert(1.0, text)
         self.text_widget.config(state=tk.DISABLED)
+        print("[DEBUG] Text widget updated")
     
     def _show_by_room(self):
         self._show_text(self.visualizer.format_table_by_room())
@@ -343,11 +400,14 @@ class ScheduleGUI:
 
 
 def main():
+    print("[DEBUG] ===== SCHEDULE VISUALIZER STARTED =====")
     try:
         project_root = Path(__file__).parent
+        print("[DEBUG] Project root: {}".format(project_root))
         
         print("Connecting to Prolog system...")
         prolog = PrologInterface(project_root)
+        print("[DEBUG] PrologInterface created")
         
         print("Generating schedule...")
         assignments = prolog.generate_schedule()
@@ -358,18 +418,25 @@ def main():
         
         print("SUCCESS: Generated schedule with {} assignments".format(len(assignments)))
         print("Launching GUI...")
+        print("[DEBUG] Creating ScheduleVisualizer...")
         
         visualizer = ScheduleVisualizer(assignments)
+        print("[DEBUG] Creating Tkinter root...")
         
         # Launch GUI
         root = tk.Tk()
+        print("[DEBUG] Creating ScheduleGUI...")
         gui = ScheduleGUI(root, visualizer)
+        print("[DEBUG] GUI created, starting mainloop...")
         root.mainloop()
+        print("[DEBUG] Mainloop ended")
     except Exception as e:
         print("ERROR: {}".format(str(e)))
         import traceback
         traceback.print_exc()
         sys.exit(1)
+    finally:
+        print("[DEBUG] ===== SCHEDULE VISUALIZER ENDED =====")
 
 
 if __name__ == "__main__":
