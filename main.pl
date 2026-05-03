@@ -87,8 +87,9 @@ print_banner :-
 % ============================================================
 % run_scheduler/0 is defined in interface.pl and imported via use_module.
 % The predicate below is a safeguard for the case interface.pl fails to load.
-run_scheduler :-
-    run_scheduler_fallback.
+% (Commented out to prevent SWI-Prolog warning since interface.pl now provides it)
+% run_scheduler :-
+%     run_scheduler_fallback.
 
 run_scheduler_fallback :-
     setting(candidate_limit, Limit),

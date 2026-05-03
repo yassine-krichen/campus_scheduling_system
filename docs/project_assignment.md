@@ -8,7 +8,7 @@
 **Final Defense:** May 5, 2026\
 **Group Size:** 6 Students at most
 
-------------------------------------------------------------------------
+---
 
 ## 1. General Vision and Scientific Motivation
 
@@ -38,7 +38,7 @@ must also evaluate and compare alternatives using quantitative criteria.
 The intellectual challenge lies in modeling a real institutional
 decision problem using purely declarative logic.
 
-------------------------------------------------------------------------
+---
 
 ## 2. Formal Problem Description
 
@@ -46,30 +46,30 @@ Consider the following abstract model of the campus scheduling problem.
 
 Let:
 
--   C = {c1, c2, ..., cn} be the set of courses\
--   R = {r1, r2, ..., rm} be the set of rooms\
--   T = {t1, t2, ..., tk} be the set of time slots\
--   G = {g1, g2, ..., gp} be the set of student groups\
--   B = {b1, b2, ..., bq} be the set of buildings
+- C = {c1, c2, ..., cn} be the set of courses\
+- R = {r1, r2, ..., rm} be the set of rooms\
+- T = {t1, t2, ..., tk} be the set of time slots\
+- G = {g1, g2, ..., gp} be the set of student groups\
+- B = {b1, b2, ..., bq} be the set of buildings
 
 Each course (ci) is characterized by:
 
--   A required number of weekly sessions (si)\
--   A duration (di) (in slots)\
--   An assigned student group g(ci)\
--   A required equipment type e(ci)\
--   An instructor availability set Ai ⊆ T
+- A required number of weekly sessions (si)\
+- A duration (di) (in slots)\
+- An assigned student group g(ci)\
+- A required equipment type e(ci)\
+- An instructor availability set Ai ⊆ T
 
 Each room (rj) has:
 
--   A capacity cap(rj)\
--   An equipment type e(rj)\
--   A building location b(rj)\
--   An hourly energy cost ε(rj)
+- A capacity cap(rj)\
+- An equipment type e(rj)\
+- A building location b(rj)\
+- An hourly energy cost ε(rj)
 
 Each building (bl) has:
 
--   A daily energy threshold Emax(bl)
+- A daily energy threshold Emax(bl)
 
 A schedule is a mapping assigning each course session to a room and time
 slot such that no hard constraints are violated.
@@ -86,7 +86,7 @@ The system must ensure:
 This formalization transforms the scheduling task into a constrained
 combinatorial reasoning problem.
 
-------------------------------------------------------------------------
+---
 
 ## 3. Milestone Structure
 
@@ -105,11 +105,11 @@ underlying representation.
 At this stage, the system must be able to generate candidate assignments
 and verify structural feasibility. It must detect violations of:
 
--   Room-time conflicts\
--   Group-time conflicts\
--   Capacity constraints\
--   Equipment incompatibilities\
--   Instructor unavailability
+- Room-time conflicts\
+- Group-time conflicts\
+- Capacity constraints\
+- Equipment incompatibilities\
+- Instructor unavailability
 
 The central intellectual challenge in this milestone is constraint
 placement. Students must determine whether constraints should be checked
@@ -119,12 +119,12 @@ achieved through early failure.
 
 Key analytical questions:
 
--   How does the ordering of constraints affect search complexity?\
--   What is the theoretical branching factor of the search tree?\
--   Under what modeling decisions does the system become incomplete or
-    inefficient?
+- How does the ordering of constraints affect search complexity?\
+- What is the theoretical branching factor of the search tree?\
+- Under what modeling decisions does the system become incomplete or
+  inefficient?
 
-------------------------------------------------------------------------
+---
 
 ### Milestone 2: Energy Modeling and Quantitative Reasoning
 
@@ -142,7 +142,7 @@ This milestone tests integration of arithmetic accumulation with
 recursive logical generation. Students must analyze the impact of energy
 constraints on solution feasibility.
 
-------------------------------------------------------------------------
+---
 
 ### Milestone 3: Optimization, Fairness, and Multi-Criteria Evaluation
 
@@ -151,48 +151,48 @@ The final milestone transforms the system into a decision-making engine.
 The system must evaluate multiple valid schedules using criteria such
 as:
 
--   Minimizing total energy consumption\
--   Minimizing daily load imbalance\
--   Ensuring fairness in room allocation
+- Minimizing total energy consumption\
+- Minimizing daily load imbalance\
+- Ensuring fairness in room allocation
 
 Students must implement structured comparison logic and justify
 optimization strategies.
 
 Key questions:
 
--   How to compare structured schedules declaratively?\
--   How to avoid combinatorial explosion during optimization?\
--   What trade-offs exist between fairness and efficiency?
+- How to compare structured schedules declaratively?\
+- How to avoid combinatorial explosion during optimization?\
+- What trade-offs exist between fairness and efficiency?
 
-------------------------------------------------------------------------
+---
 
 ## 4. Integration and System Architecture
 
 The final system must integrate:
 
--   Knowledge representation\
--   Recursive generation\
--   Constraint enforcement\
--   Numeric accumulation\
--   Optimization comparison
+- Knowledge representation\
+- Recursive generation\
+- Constraint enforcement\
+- Numeric accumulation\
+- Optimization comparison
 
 The main predicate orchestrates the full reasoning pipeline. Modular
 design is required.
 
-------------------------------------------------------------------------
+---
 
 ## 5. Expected Intellectual Depth
 
 Students must:
 
--   Model a real institutional decision problem\
--   Design a recursive constraint system\
--   Integrate arithmetic with logic\
--   Implement multi-criteria optimization\
--   Control search complexity\
--   Analyze performance theoretically and experimentally
+- Model a real institutional decision problem\
+- Design a recursive constraint system\
+- Integrate arithmetic with logic\
+- Implement multi-criteria optimization\
+- Control search complexity\
+- Analyze performance theoretically and experimentally
 
-------------------------------------------------------------------------
+---
 
 ## 6. Final Defenses
 

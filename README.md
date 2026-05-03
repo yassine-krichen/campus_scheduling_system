@@ -32,9 +32,9 @@ The system must not only find feasible schedules but also compare and rank alter
 | `constraints.pl` | ✅ Complete | Person 1 |
 | `generator.pl` | ✅ Complete | Person 1 |
 | `main.pl` | ✅ Complete | Person 1 |
-| `energy.pl` | 🔧 In progress | Person 2 |
-| `optimizer.pl` | 🔧 In progress | Person 2 |
-| `interface.pl` | 🔧 In progress | Person 2 |
+| `energy.pl` | ✅ Complete | Person 2 |
+| `optimizer.pl` | ✅ Complete | Person 2 |
+| `interface.pl` | ✅ Complete | Person 2 |
 
 ---
 
