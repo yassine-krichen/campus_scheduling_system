@@ -301,22 +301,10 @@ def main():
     project_root = Path(__file__).parent
     
     if len(sys.argv) > 1 and sys.argv[1] == '--gui':
-        # Launch GUI version
-        print("Launching GUI visualizer...")
-        from schedule_visualizer import ScheduleGUI, ScheduleVisualizer, PrologInterface
-        import tkinter as tk
-        
-        prolog = PrologInterface(project_root)
-        assignments = prolog.generate_schedule()
-        
-        if not assignments:
-            print("FAILED: Could not generate schedule")
-            sys.exit(1)
-        
-        visualizer = ScheduleVisualizer(assignments)
-        root = tk.Tk()
-        gui = ScheduleGUI(root, visualizer)
-        root.mainloop()
+        print("Launching FastAPI schedule visualizer...")
+        from schedule_visualizer import main as run_web_visualizer
+
+        run_web_visualizer()
         return
     
     # Terminal mode

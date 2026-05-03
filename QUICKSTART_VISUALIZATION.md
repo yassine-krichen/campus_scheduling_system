@@ -1,205 +1,103 @@
 # Quick Start Guide - Schedule Visualization
 
-## Two Ways to Visualize Your Schedules
+## Option 1: Terminal Viewer
 
-### Option 1: Terminal Viewer (Recommended for Quick Views)
-Interactive menu-driven viewer in your terminal.
+Use the interactive terminal viewer for quick checks:
 
 ```bash
 python schedule_viewer.py
 ```
 
-Then choose from the menu:
-```
-1. Summary         - Statistics overview
-2. By Room         - See what's in each room
-3. By Group        - See each group's schedule
-4. By Day          - See daily breakdown
-5. Timetable Grid  - Slot-by-slot view
-6. All Views       - Show everything
+Menu options:
+
+```text
+1. Summary
+2. By Room
+3. By Group
+4. By Day
+5. Timetable Grid
+6. All Views
 0. Exit
 ```
 
-**Fastest way to see a schedule:**
+## Option 2: Web Timetable UI
+
+Install the web dependencies once:
+
 ```bash
-python schedule_viewer.py
-# Then press: 1, Enter, 0, Enter
+python -m pip install -r requirements.txt
 ```
 
----
-
-### Option 2: GUI Viewer (Graphical Interface)
-Windowed interface with clickable buttons.
+Start the FastAPI visualizer:
 
 ```bash
 python schedule_visualizer.py
 ```
 
-Or from terminal viewer:
+Open:
+
+```text
+http://127.0.0.1:8000
+```
+
+You can also launch it from the terminal viewer entry point:
+
 ```bash
 python schedule_viewer.py --gui
 ```
 
-Then click buttons to switch between views.
+## Scenario Examples
 
----
-
-## Example Output
-
-### Summary View
-```
-================================================================================
-SCHEDULE SUMMARY
-================================================================================
-Total assignments:      32
-Rooms in use:           8
-Groups scheduled:       2
-Days in use:            6/6
-Max slots per day:      6
-```
-
-### By Room View
-```
-ROOM: ROOM_01
-────────────────────────────────────────
-Day          Slot   Course                      Group
-────────────────────────────────────────
-monday       1      gl3_lp_lec                  gl3_a
-monday       2      mpi_analysis_td             mpi_1
-tuesday      3      iia_algo_lec                iia_1
-...
-```
-
-### By Group View
-```
-GROUP: GL3_A
-────────────────────────────────────────
-Day          Slot   Course                      Room
-────────────────────────────────────────
-monday       1      gl3_lp_lec                  room_01
-wednesday    2      gl3_net_lec                 room_05
-friday       4      gl3_web_lec                 room_03
-...
-```
-
-### By Day View
-```
-MONDAY
-────────────────────────────────────────
-Slot   Course                      Group          Room
-────────────────────────────────────────
-1      gl3_lp_lec                  gl3_a          room_01
-1      mpi_analysis_td             mpi_1          room_15
-2      iia_algo_lec                iia_1          room_03
-...
-```
-
-### Timetable Grid
-```
-MONDAY
-
-  Slot 1:
-    - gl3_lp_lec (gl3_a) > room_01
-    - mpi_analysis_td (mpi_1) > room_15
-    
-  Slot 2:
-    - iia_algo_lec (iia_1) > room_03
-    - ch2_chem_lec (ch2_a) > room_08
-```
-
----
-
-## Requirements
-
-- **Python 3.7+**
-- **SWI-Prolog** (in PATH)
-- **Tkinter** (for GUI - usually included)
-
-### Check if you have everything:
-```bash
-python --version           # Should show 3.7+
-swipl --version           # Should show SWI-Prolog 10.0.1+
-```
-
----
-
-## Tips & Tricks
-
-### 1. Generate Multiple Schedules
-Each time you run a viewer, it generates a fresh schedule. Run multiple times to see different valid schedules.
+Small demo:
 
 ```bash
-python schedule_viewer.py  # Generates schedule 1
-python schedule_viewer.py  # Generates schedule 2 (probably different!)
+$env:SCHED_SCENARIO="demo"
+python schedule_visualizer.py
 ```
 
-### 2. Pipe Output to File
-Save a schedule view to a text file:
+GL scenario:
 
 ```bash
-# Terminal viewer
-echo "1" | python schedule_viewer.py > schedule_summary.txt 2>&1
-
-# Or all views
-echo "6" | python schedule_viewer.py > full_schedule.txt 2>&1
+$env:SCHED_SCENARIO="gl3_only"
+python schedule_visualizer.py
 ```
 
-### 3. Compare Views
-- **By Room** - Check if rooms are well-utilized
-- **By Group** - Verify no time conflicts for students
-- **By Day** - See daily load distribution
-- **Summary** - Get quantitative metrics
+Full campus with a longer timeout:
 
----
+```bash
+$env:SCHED_SCENARIO="full_campus"
+$env:SCHED_LIMIT="1"
+$env:SCHED_TIMEOUT="180"
+python schedule_visualizer.py
+```
+
+## Web UI Features
+
+- Timetable grid by day and slot
+- Assignment table for dense review
+- Room and group navigation views
+- Search across course, group, room, day, and slot
+- Filters for day, group, and room
+- Scenario selector and regenerate button
+- JSON endpoint at `/api/schedule`
 
 ## Troubleshooting
 
-**Q: "swipl command not found"**
-- A: Install SWI-Prolog and add it to PATH
+If FastAPI or Uvicorn is missing:
 
-**Q: GUI doesn't show**
-- A: On Linux: `sudo apt install python3-tk`
-- A: On Mac: `brew install python-tk`
+```bash
+python -m pip install -r requirements.txt
+```
 
-**Q: "Failed to generate schedule"**
-- A: Check if Prolog files are valid: `python test_scheduler.py`
+If `swipl` is not found, install SWI-Prolog and make sure it is available in your PATH:
 
-**Q: Viewer is very slow**
-- A: This is normal for complex scenarios. Schedule generation can take 10-30 seconds.
+```bash
+swipl --version
+```
 
----
+Large scenarios can take more than 30 seconds. Increase the timeout:
 
-## What Each Viewer Shows
-
-| Feature | Terminal | GUI |
-|---------|----------|-----|
-| Quick viewing | ✅ | ✅ |
-| Interactive menu | ✅ | ❌ |
-| Clicking buttons | ❌ | ✅ |
-| Scrollable | Partial | ✅ |
-| Scriptable | ✅ | ❌ |
-| Pipe to file | ✅ | ❌ |
-
----
-
-## Next Steps
-
-1. **Run your first visualization:**
-   ```bash
-   python schedule_viewer.py
-   ```
-
-2. **Try different views** to understand your schedule
-
-3. **Generate multiple schedules** to see alternatives
-
-4. **Check the full documentation:**
-   ```bash
-   cat VISUALIZATION_README.md
-   ```
-
-5. **Suggest improvements** for the visualization tools
-
----
-
-For detailed information, see: **VISUALIZATION_README.md**
+```bash
+$env:SCHED_TIMEOUT="180"
+python schedule_visualizer.py
+```
